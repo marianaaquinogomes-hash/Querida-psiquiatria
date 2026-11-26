@@ -1,31 +1,9 @@
-Quando nossos filhos ficam mais irritados, a gente procura a causa em vários lugares.
+"Ele anda tão irritado." Antes de procurar a causa só no comportamento, vale olhar também para as noites.
 
-Na escola. Nas telas. Na fase.
+Algumas perguntas ajudam a começar. Quanto tempo ele leva para pegar no sono? Acorda durante a noite? Ronca ou dorme de boca aberta? Acorda cansado, mesmo depois de uma noite inteira na cama? [REVISAR]
 
-O sono quase nunca é o primeiro suspeito.
+Se der, anote por uma ou duas semanas o horário em que ele dormiu e acordou, como foi a noite e como ele estava no dia seguinte. Esses registros, junto com o que a escola observa, ajudam a entender se o sono faz parte da história. [REVISAR]
 
-Imagine a manhã depois de uma noite agitada.
-O café da manhã que não desce.
-O choro porque a meia ficou torta.
-A paciência que acaba antes das oito.
+Na consulta, o sono entra na conversa sobre comportamento. Atendo presencialmente na Zona Sul e na Barra da Tijuca. Para saber os horários e agendar, fale com a minha equipe pelo link da bio.
 
-Talvez a pergunta não seja só "por que ele está assim?".
-Mas também: "como foi a noite dele?".
-
-Alguns sinais merecem um olhar mais atento:
-
-• dificuldade para pegar no sono ou acordar várias vezes [REVISAR]
-• ronco ou respiração pela boca enquanto dorme [REVISAR]
-• acordar cansado, mesmo depois de dormir [REVISAR]
-• sonolência durante o dia [REVISAR]
-
-Quando isso se repete por semanas e começa a pesar no humor, na escola ou na rotina da casa, vale conversar com um profissional. [REVISAR]
-
-É comum. Não é culpa de ninguém.
-E o sono não explica tudo, mas merece entrar na conversa.
-
-Que tal reparar nas próximas noites com um pouco mais de curiosidade?
-
-Na avaliação do comportamento, o sono faz parte da história que a gente escuta. Atendimento presencial na Zona Sul e na Barra da Tijuca.
-
-#sonoinfantil #psiquiatriainfantil
+#SonoInfantil #SaúdeMentalInfantil
