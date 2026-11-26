@@ -124,6 +124,16 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#e8e4e1;color:#3f3536
 .carrossel .acao{font:inherit;font-size:.76rem;border:0;background:transparent;color:#532233;cursor:pointer;padding:6px 8px;border-radius:8px}
 .carrossel .acao:hover{background:#fff}
 .salvo{font-size:.7rem;color:#999}
+.galeria{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-height:230px;overflow:auto}
+.galeria .g{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;background:#eee}
+.galeria .g img{width:100%;height:100%;object-fit:cover;display:block}
+.galeria .g.on{border-color:#532233}
+.galeria .g i{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.55);color:#fff;font-style:normal;font-size:11px;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center}
+.galeria .g:hover i{display:flex}
+.galeria .vazia{grid-column:1/-1;font-size:.75rem;color:#999}
+.meme{position:absolute;z-index:4;left:50%;transform:translateX(-50%) rotate(var(--rot,-1.5deg));background:#fff;padding:16px;border-radius:26px;box-shadow:0 14px 30px rgba(0,0,0,.18)}
+.meme img{display:block;max-width:780px;max-height:var(--mh,700px);border-radius:14px}
+.meme .semfoto{width:700px;height:520px;display:flex;align-items:center;justify-content:center;color:#999;font-size:30px;background:#f3f3f3;border-radius:14px}
 @media(max-width:900px){body{grid-template-columns:1fr}.painel{position:static;max-height:none}}
 </style>
 </head>
@@ -154,7 +164,10 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#e8e4e1;color:#3f3536
   </div>
 
   <div class="grupo" data-campo="foto">
-    <label>Foto</label><input type="file" id="i-foto" accept="image/*">
+    <label>Foto ou meme</label><input type="file" id="i-foto" accept="image/*" multiple>
+    <p class="dica">Pode escolher várias de uma vez: todas vão para a galeria abaixo.</p>
+    <label>Minha galeria</label>
+    <div class="galeria" id="galeria"></div>
     <label>Cor da foto</label>
     <div class="chips" id="tintas"><button data-v="rosa">Rosada</button><button data-v="vinho">Vinho</button><button data-v="natural">Natural</button></div>
     <label>Enquadrar foto: horizontal / vertical / zoom</label>
@@ -286,6 +299,8 @@ const M={
    d:{titulo:'Você também\nnão precisa\nchegar à\nconsulta\nsabendo o\n^//diagnóstico//^.',t1:'Nem ter\ncerteza de\nqual caminho\nseguir.',t2:'Às vezes, a primeira avaliação existe\njustamente **para ajudar a entender isso.**'}},
  caixaMenta:{nome:'Foto + caixa menta',dica:'Foto inteira, texto em marca-texto no alto e caixa menta com título cinza e texto.',campos:['t1','titulo','t2','foto'],fundo:'foto',ts:96,ps:42,rod:'topo',tinta:'natural',
    d:{t1:'Quando algo no desenvolvimento, no\ncomportamento ou nas emoções do\nseu filho preocupa você...',titulo:'o primeiro passo\nnão é ter todas\nas respostas.',t2:'É começar a procurar por elas.'}},
+ meme:{nome:'Meme',dica:'Meme inteiro (sem cortar) numa moldura branca, com título em cima e texto embaixo.',campos:['titulo','t2','foto'],fundo:'rosa',ts:92,ps:42,tinta:'natural',
+   d:{titulo:'Eu explicando pela\n5ª vez que o _não_\ncontinua sendo não:',t2:'Sustentar o limite com calma\n**também é cuidado.**'}},
  texto:{nome:'Texto + título',dica:'Só tipografia: texto pequeno, título com palavra cursiva e pílulas opcionais.',campos:['t1','titulo','itens'],fundo:'rosa',ts:116,ps:44,
    d:{t1:'Antes de ter palavras para\nexplicar o que sente, ela tem\no brincar para mostrar.',titulo:'Por isso, vale\n_observar_ antes\nde dirigir.',itens:'Quem manda na brincadeira?\nO que se repete?\nComo a história termina?'}}
 };
@@ -301,7 +316,17 @@ chips('modelos','m',()=>carregar(st.m));chips('fundos','fundo');chips('tintas','
 function carregar(k){const m=M[k];['t1','titulo','titulo2','itens','t2'].forEach(c=>$('i-'+c).value=m.d[c]||'');st.fundo=m.fundo;st.rod=m.rod||'baixo';$('i-ts').value=m.ts||104;$('i-ps').value=m.ps||44;
   st.fant=m.fant||'nao';st.lat=m.lat||'nao';st.cortit=m.cortit||'auto';st.tinta=m.tinta||'rosa';st.corpil=m.corpil||'auto';if(k==='adesivoQuadro')st.adesivo='vinho';if(k==='adesivo')st.adesivo='rosa';}
 document.querySelectorAll('.painel textarea,.painel input[type=range]').forEach(el=>el.addEventListener('input',()=>render()));
-$('i-foto').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{st.foto=r.result;render()};r.readAsDataURL(f)});
+
+function comprimir(f){return new Promise((ok,err)=>{const r=new FileReader();r.onerror=err;r.onload=()=>{const im=new Image();im.onerror=err;im.onload=()=>{const k=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',.88))};im.src=r.result};r.readAsDataURL(f)})}
+let galeria=[];
+function desenharGaleria(){const g=$('galeria');if(!g)return;
+  g.innerHTML=galeria.length?galeria.map((x,i)=>`<div class="g ${x.data===st.foto?'on':''}" data-i="${i}" title="${esc(x.nome||'')}"><img src="${x.data}" alt=""><i data-del="${i}">✕</i></div>`).join(''):'<div class="vazia">As imagens que você escolher ficam guardadas aqui para usar de novo.</div>'}
+$('galeria').addEventListener('click',e=>{const d=e.target.closest('[data-del]');if(d){if(!confirm('Tirar esta imagem da galeria?'))return;galeria.splice(+d.dataset.del,1);guardarGaleria();desenharGaleria();return}
+  const b=e.target.closest('.g');if(!b)return;st.foto=galeria[+b.dataset.i].data;render();desenharGaleria();});
+async function guardarGaleria(){try{const d=await db();d.transaction('k','readwrite').objectStore('k').put(galeria,'galeria')}catch(e){}}
+$('i-foto').addEventListener('change',async e=>{const fs=[...e.target.files];if(!fs.length)return;
+  for(const f of fs){try{const data=await comprimir(f);if(!galeria.some(x=>x.data===data))galeria.unshift({nome:f.name,data});if(f===fs[0])st.foto=data;}catch(err){alert('Não consegui abrir '+f.name)}}
+  guardarGaleria();desenharGaleria();render();e.target.value='';});
 
 const v=id=>$('i-'+id).value;
 function foto(css,extra=''){if(css==='inset:0')extra+=' cheia';const z=v('fz')/100;
@@ -378,6 +403,9 @@ function render(){
      h=`<div class="tile" style="left:5px;width:530px;top:-60px;height:${660*f}px;background:#5e2a3e"></div><div class="tile" style="left:5px;width:530px;top:${605*f}px;height:${665*f}px;background:#8f5a6e"></div><div class="tile" style="left:5px;width:530px;top:${1275*f}px;height:300px;background:#c294a8"></div><div class="tile" style="left:545px;right:5px;top:-60px;height:${250*f}px;background:#c294a8"></div><div class="tile" style="left:545px;right:5px;top:${195*f}px;height:${665*f}px">${foto('inset:0')}</div><div class="tile" style="left:545px;right:5px;top:${865*f}px;height:${700*f}px;background:#5a2538"></div><div class="camada" style="left:70px;width:460px;top:${225*f}px">${T(v('titulo'))}</div><div class="camada txt" style="left:135px;width:380px;top:${820*f}px;--txt:#F7F1EC">${fmt(v('t1'))}</div><div class="camada txt" style="left:628px;width:400px;top:${1090*f}px;--txt:#F7F1EC">${fmt(v('t2')).replace(/<mark>/g,'<span style="color:#FCC8BF">').replace(/<\/mark>/g,'</span>')}</div>`;break;}
    case 'apagado': h=bloco(`<div style="position:relative">${T(v('titulo'))}<div class="txt" style="position:absolute;right:0;bottom:${ts*1.4}px;width:250px">${fmt(v('t1'))}</div></div><div class="centro" style="margin-top:80px">${X(v('t2'))}</div>`,'left:165px;right:170px');break;
    case 'caixaMenta': h=foto('inset:0')+`<div class="camada centro faixa txt" style="left:90px;right:90px;top:${135+dy}px;--txt:#3f3536;--salvia:#DDE8DD">${v('t1').split('\n').map(l=>`<span>${fmt(l)}</span>`).join('<br>')}</div><div class="camada centro" style="left:130px;right:130px;top:${945+dy}px;background:#D3E3DB;padding:38px 30px 40px;transform:rotate(.6deg);--tit:#8a918c">${T(v('titulo'))}<div class="txt" style="margin-top:20px;--txt:#3f3536">${fmt(v('t2'))}</div></div>`;break;
+   case 'meme':{const temT=v('titulo').trim(),temB=v('t2').trim(),H=st.fmt==='stories'?1920:1440;
+     const topo=temT?Math.round(H*.1):Math.round(H*.12);
+     h=`<div class="camada centro" style="left:70px;right:70px;top:${topo}px">${temT?T(v('titulo')):''}</div><div class="meme" id="meme" style="top:${topo}px;--mh:${temB?700:860}px">${st.foto?`<img src="${st.foto}" alt="">`:'<div class="semfoto">escolha um meme em “Foto ou meme”</div>'}</div><div class="camada centro" id="memeB" style="left:110px;right:110px;top:${topo}px">${X(v('t2'))}</div>`;break;}
    case 'selo': h=`<div class="selo" style="top:${432+dy}px"><div class="tit">${fmt(v('titulo'))}</div><div class="txt" style="align-self:flex-start;margin-top:80px">${fmt(v('t2'))}</div></div>`;break;
    case 'faixas': h=foto('inset:0')+`<div class="camada centro faixa txt" style="left:110px;right:110px;top:${200+dy}px;--txt:#3f3536">${v('t1').split('\n').map(l=>`<span>${fmt(l)}</span>`).join('<br>')}</div><div class="camada centro faixa txt" style="left:110px;right:110px;bottom:${180+dy}px;--txt:#3f3536">${v('t2').split('\n').map(l=>`<span>${fmt(l)}</span>`).join('<br>')}</div>`;break;
   }
@@ -386,6 +414,11 @@ function render(){
   if(st.rod!=='nenhum'&&st.m!=='capaEtiqueta')h+=`<div class="rod ${st.rod==='topo'?'topo':''}">Dra Mariana Freire | <b>Psiquiatria Infantil</b></div>`;
   h+='<div class="grao"></div><div class="grao2"></div>';
   p.innerHTML=h;
+  if(st.m==='meme'){const H=st.fmt==='stories'?1920:1440,tt=p.querySelector('.camada .tit'),mm=$('meme'),bb=$('memeB');
+    const ajusta=()=>{const k=p.getBoundingClientRect().width/1080||1,th=tt?tt.getBoundingClientRect().height/k:0,mh=mm.getBoundingClientRect().height/k,bh=bb.getBoundingClientRect().height/k;
+      const tot=th+(th?50:0)+mh+(bh?50:0)+bh,ini=Math.max(70,(H-tot)/2-30);
+      if(tt)tt.parentElement.style.top=ini+'px';mm.style.top=(ini+th+(th?50:0))+'px';bb.style.top=(ini+th+(th?50:0)+mh+(bh?50:0))+'px';};
+    ajusta();const im=mm.querySelector('img');if(im&&!im.complete)im.onload=ajusta;}
   // fotos que acompanham o texto (posicionadas pelo espaço reservado)
   if(st.m==='fotoMeio'||st.m==='fotoQuadro'){const ph=p.querySelector('.camada [style*="height:260px"],.camada [style*="height:360px"]');
     const r=ph.getBoundingClientRect(),pr=p.getBoundingClientRect(),k=pr.width/1080;
@@ -412,7 +445,7 @@ const CAMPOS_V=['t1','titulo','titulo2','itens','t2','ts','ps','fx','fy','fz'];
 let slides=[],cur=0,carregando=false,tSalvar;
 const foto0=()=>null;
 function snap(){const s={st:{...st},v:{}};CAMPOS_V.forEach(c=>s.v[c]=$('i-'+c).value);return s}
-function aplicar(s){carregando=true;Object.assign(st,s.st);CAMPOS_V.forEach(c=>{if(s.v[c]!==undefined)$('i-'+c).value=s.v[c]});$('i-foto').value='';marcar();render();carregando=false}
+function aplicar(s){setTimeout(()=>desenharGaleria&&desenharGaleria(),0);carregando=true;Object.assign(st,s.st);CAMPOS_V.forEach(c=>{if(s.v[c]!==undefined)$('i-'+c).value=s.v[c]});$('i-foto').value='';marcar();render();carregando=false}
 function lista(){const c=$('carrossel');
   c.innerHTML=slides.map((s,i)=>{const tx=(s.v.titulo||s.v.t1||s.v.itens||'').replace(/[_*=~^\/]/g,'').split('\n')[0];return `<button class="sl ${i===cur?'on':''}" data-i="${i}"><b>${i+1}</b><small>${esc(M[s.st.m].nome)} · ${esc(tx)}</small></button>`}).join('')+
   `<button class="acao" data-a="novo" title="Novo slide">＋ Novo</button><button class="acao" data-a="dup" title="Duplicar">⧉ Duplicar</button><button class="acao" data-a="esq" title="Mover para a esquerda">←</button><button class="acao" data-a="dir" title="Mover para a direita">→</button><button class="acao" data-a="del" title="Excluir">✕ Excluir</button><span class="salvo" id="salvo"></span>`}
@@ -443,6 +476,7 @@ $('baixar-todos').onclick=async()=>{const b=$('baixar-todos'),txt=b.textContent;
 $('novo-carrossel').onclick=()=>{if(!confirm('Começar um carrossel novo? O atual será apagado deste navegador. Baixe antes se quiser guardar.'))return;st.foto=null;carregar('pilulas');marcar();carregando=true;render();carregando=false;slides=[snap()];cur=0;lista();salvar();};
 (async()=>{carregar('pilulas');marcar();carregando=true;render();carregando=false;
   const g=await abrir();if(g&&g.slides&&g.slides.length){slides=g.slides;cur=Math.min(g.cur||0,slides.length-1);aplicar(slides[cur]);}else{slides=[snap()];cur=0;}
+  galeria=(await (async()=>{try{const d=await db();return await new Promise(ok=>{const r=d.transaction('k').objectStore('k').get('galeria');r.onsuccess=()=>ok(r.result||[]);r.onerror=()=>ok([])})}catch(e){return[]}})());desenharGaleria();
   lista();})();
 </script>
 </body>
