@@ -4,6 +4,6 @@ Algumas perguntas ajudam a começar. Quanto tempo ele leva para pegar no sono? A
 
 Se der, anote por uma ou duas semanas o horário em que ele dormiu e acordou, como foi a noite e como ele estava no dia seguinte. Esses registros, junto com o que a escola observa, ajudam a entender se o sono faz parte da história. [REVISAR]
 
-Na consulta, o sono entra na conversa sobre comportamento. Atendo presencialmente na Zona Sul e na Barra da Tijuca. Para saber os horários e agendar, fale com a minha equipe pelo link da bio.
+Se as noites andam difíceis por aí, esse pode ser um bom ponto de partida para a nossa conversa.
 
 #SonoInfantil #SaúdeMentalInfantil

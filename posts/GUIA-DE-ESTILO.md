@@ -33,5 +33,5 @@ Modelo de referência: `posts/carrosseis/2026-11-dormir-mal/legenda.md`.
 - Não citar nomes de medicamentos nem doses.
 - Sem alarmismo, sem rótulos diagnósticos para quem lê e sem promessas de resultado.
 - Não abordar política, religião nem orientação sexual.
-- Mencionar o consultório presencial só quando fizer sentido para o tema.
+- **Não mencionar atendimento presencial nem locais nas legendas** (fica forçado). Preferir um convite delicado e fluido, como: "Se as noites andam difíceis por aí, esse pode ser um bom ponto de partida para a nossa conversa."
 - Fluxo: 1) abordagens, 2) estrutura para aprovação, 3) texto final. Perguntar se faltar informação.
