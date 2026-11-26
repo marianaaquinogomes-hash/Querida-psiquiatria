@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Editor de posts · Dra. Mariana Freire</title>
+<title>Editor de posts · Dra. Mariana Aquino</title>
 <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <style>
@@ -387,7 +387,7 @@ function render(){
    case 'fotoCaixa': h=foto('inset:0')+`<div class="camada" style="left:120px;top:${360+dy}px;width:760px">${T(v('titulo'))}</div><div class="camada centro txt" style="left:110px;width:600px;top:${360+dy+ts*4.9}px;background:#FDD3D0;color:#3f3536;border-radius:0 70px 70px 70px;padding:50px 40px">${fmt(v('t2'))}</div>`;break;
    case 'legendas':{const its=v('itens').split('\n').filter(x=>x.trim()).map(x=>`<div style="display:flex;align-items:center;gap:22px"><i style="width:44px;height:2px;background:currentColor;flex:none;margin-left:-66px"></i><span>${fmt(x.replace(/\\n/g,'\n'))}</span></div>`).join('');
      h=foto(`left:160px;width:330px;top:${275+dy}px;height:555px`)+`<div class="camada txt" style="left:550px;right:60px;top:${275+dy}px;height:555px;display:flex;flex-direction:column;justify-content:center;gap:40px;--txt:${fundo==='vinho'?'#f7efe9':'#3f3536'};color:var(--txt)">${its}</div><div class="camada centro" style="left:60px;right:60px;top:${910+dy}px">${T(v('titulo'))}</div>`;break;}
-   case 'capaEtiqueta': h=foto('inset:0')+`<div class="camada" style="left:80px;right:40px;top:${670+dy}px"><div class="etiqueta">${fmt(v('t1'))}</div><div class="tit" style="margin-top:10px">${fmt(v('titulo'))}</div>${st.rod!=='nenhum'?'<div class="rod solto" style="font-size:21px;color:#fff">Dra Mariana Freire | <b>Psiquiatria Infantil</b></div>':''}</div>`;break;
+   case 'capaEtiqueta': h=foto('inset:0')+`<div class="camada" style="left:80px;right:40px;top:${670+dy}px"><div class="etiqueta">${fmt(v('t1'))}</div><div class="tit" style="margin-top:10px">${fmt(v('titulo'))}</div>${st.rod!=='nenhum'?'<div class="rod solto" style="font-size:21px;color:#fff">Dra Mariana Aquino | <b>Psiquiatria Infantil</b></div>':''}</div>`;break;
    case 'ladoLinha':{h=bloco(`<div style="position:relative">${X(v('t1'))}<div class="tit" style="margin-top:14px">${fmt(v('titulo'))}</div><div class="txt" style="text-align:right;position:absolute;right:0;top:calc(100% - ${ts*.95}px)">${fmt(v('t2'))}</div><div class="linhaL" style="left:10px;top:calc(100% + 40px);width:460px;height:180px"></div></div>`,'left:170px;right:170px;padding-bottom:300px');break;}
    case 'cartoes': h=bloco(`<div class="centro" style="display:flex;flex-direction:column;align-items:center;gap:60px">${T(v('titulo'))}<div class="cartoes">${v('itens').split('\n').filter(x=>x.trim()).map(x=>`<div>${fmt(x.replace(/\\n/g,'\n'))}</div>`).join('')}</div></div>`);break;
    case 'colunas':{const it=v('itens').split('\n').filter(x=>x.trim()),meio=Math.ceil(it.length/2),ord=[];for(let i=0;i<meio;i++){ord.push([it[i],i===meio-1]);if(it[meio+i]!==undefined)ord.push([it[meio+i],i===meio-1]);}
@@ -417,7 +417,7 @@ function render(){
   }
   if(st.fant==='sim'){const base=(v('titulo')||v('t1')).replace(/[_*=~\/]/g,'').replace(/\s+/g,' ').trim()+' ';const G={capaEtiqueta:[595,390,975,165],baloesCur:[145,790,530,580]}[st.m]||[560,430,340,760];h=`<div class="fantasma" style="left:${G[0]}px;width:${G[1]}px;top:${G[2]+dy}px;height:${G[3]}px;${st.m==='capaEtiqueta'?'--ftt:uppercase;opacity:.55;color:#fff;font-size:22px':''}">${esc(base.repeat(40))}</div>`+h;}
   if(st.lat==='sim')h+='<div class="lateral"></div>';
-  if(st.rod!=='nenhum'&&st.m!=='capaEtiqueta')h+=`<div class="rod ${st.rod==='topo'?'topo':''}">Dra Mariana Freire | <b>Psiquiatria Infantil</b></div>`;
+  if(st.rod!=='nenhum'&&st.m!=='capaEtiqueta')h+=`<div class="rod ${st.rod==='topo'?'topo':''}">Dra Mariana Aquino | <b>Psiquiatria Infantil</b></div>`;
   h+='<div class="grao"></div><div class="grao2"></div>';
   p.innerHTML=h;
   if(st.m==='meme'){const H=st.fmt==='stories'?1920:1440,tt=p.querySelector('.camada .tit'),mm=$('meme'),bb=$('memeB');
