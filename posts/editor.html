@@ -53,6 +53,8 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#e8e4e1;color:#3f3536
 .rod{position:absolute;left:0;right:0;bottom:62px;text-align:center;font-size:21px;letter-spacing:-.01em;color:var(--rod);z-index:15;text-transform:uppercase}
 .rod b{color:var(--rodb);font-weight:700}
 .rod.topo{bottom:auto;top:44px}
+.rod.solto{position:static;text-align:left;margin-top:24px}
+.lateral{position:absolute;left:0;top:0;bottom:0;width:50px;background:#FEC9C1;border-radius:0 40px 40px 0;z-index:3}
 /* tipografia */
 .tit{font-family:'Roca Two',serif;font-size:var(--ts,104px);line-height:.93;letter-spacing:-.035em;color:var(--tit);-webkit-text-stroke:calc(var(--ts,104px)*.055) var(--tit);paint-order:stroke fill}
 .tit .cur,.cur{font-family:'Cretina',cursive;letter-spacing:0;-webkit-text-stroke:.03em currentColor;font-size:.95em;line-height:.8}
@@ -69,6 +71,24 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#e8e4e1;color:#3f3536
 .balao svg path{fill:var(--balf);stroke:var(--bal);stroke-width:4}
 .balao span{position:relative}
 .balao:nth-child(odd){align-self:flex-start}.balao:nth-child(even){align-self:flex-end}.balao+.balao{margin-top:-50px}
+.txt i,.pilulas i{font-style:italic}
+.tit i{font-style:normal;display:inline-block;transform:skewX(-12deg)}
+.apag{opacity:.38}
+.p-menta{--pil:#CFE1D9;--piltxt:#3f3f3f}.p-contorno{--pil:#4a1c2e;--piltxt:#FCC8BF}
+.p-contorno .pilulas div,.pilulas.cont div{border:2.5px solid #FCC8BF;border-left-width:0;box-shadow:-3px 0 0 #FCC8BF inset}
+.pilulas.encaixe{flex-direction:row;flex-wrap:wrap;gap:6px 0;justify-content:flex-start}.pilulas.encaixe div{margin-right:-26px;box-shadow:0 0 0 3px var(--fundo-cor,#F4F4E7)}
+.fantasma{position:absolute;z-index:1;text-align:justify;hyphens:auto;font-size:30px;line-height:1.1;letter-spacing:-.02em;text-transform:var(--ftt,none);opacity:.09;color:var(--txt);overflow:hidden;word-break:break-word}
+.etiqueta{display:inline-block;background:#FCC5C0;color:#4a1c2e;font-size:54px;letter-spacing:-.045em;line-height:1.1;padding:4px 14px 10px}
+.cartoes{display:flex;flex-direction:column;align-items:center}.cartoes div{border:2px solid #555;padding:18px 34px 22px;font-size:var(--ps);line-height:1.1;letter-spacing:-.045em;color:#3f3536;background:rgba(255,255,255,.04);margin-top:-6px}
+.cartoes div:nth-child(1){transform:rotate(-2deg) translateX(-50px)}.cartoes div:nth-child(2){transform:rotate(2deg) translateX(40px)}.cartoes div:nth-child(3){transform:rotate(-1.5deg) translateX(20px)}.cartoes div:nth-child(4){transform:rotate(2.5deg)}.cartoes div:nth-child(5){transform:rotate(-2deg)}
+.colunas{display:grid;grid-template-columns:1fr 1fr;column-gap:36px}.colunas div{text-align:center;font-size:var(--ps);letter-spacing:-.045em;padding:12px 0 14px;border-bottom:2px solid currentColor;color:var(--txt)}
+.colunas div.ult{border-bottom:0}
+.barras div{background:#4a1c2e;color:#F4F1EA;font-size:var(--ps);letter-spacing:-.045em;line-height:1.1;text-align:center;padding:22px 20px 26px}.barras div+div{margin-top:16px}
+.linhaL{position:absolute;border-left:2px solid #555;border-bottom:2px solid #555;z-index:3}
+.balao.cur-b span{font-family:'Cretina',cursive;letter-spacing:0;font-size:1.05em;line-height:1.35;transform:rotate(-3deg)}
+.balao.cur-b svg path{fill:transparent;stroke:#B9D3C8;stroke-width:6}
+.tile{position:absolute;border-radius:60px;overflow:hidden;z-index:2}
+.etq{position:absolute;z-index:6;background:#FCC8BF;color:#4a1c2e;font-size:var(--ps);letter-spacing:-.045em;line-height:1;padding:12px 24px 18px;border-radius:14px;text-align:center;box-shadow:0 4px 0 rgba(0,0,0,.1)}
 .caixa{background:#6a3348;color:#FCC8BF;padding:90px 120px 70px;margin:0 -10px}
 .camada{position:absolute;z-index:5}
 .centro{text-align:center}
@@ -122,7 +142,7 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#e8e4e1;color:#3f3536
   <div data-campo="titulo2"><label id="l-titulo2">Título (parte 2)</label><textarea id="i-titulo2"></textarea></div>
   <div data-campo="itens"><label id="l-itens">Pílulas (uma por linha)</label><textarea id="i-itens"></textarea></div>
   <div data-campo="t2"><label id="l-t2">Texto de baixo</label><textarea id="i-t2"></textarea>
-    <p class="dica">**negrito** · ==marca-texto== · ~sublinhado~</p></div>
+    <p class="dica">**negrito** · //itálico// · ^apagado^ · ==marca-texto== · ~sublinhado~</p></div>
   </div>
 
   <div class="grupo" data-campo="foto">
@@ -148,9 +168,15 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#e8e4e1;color:#3f3536
     <button data-v="rosa" style="background:#FCC8BF" title="Rosa"></button>
     <button data-v="coral" style="background:#E07A7F" title="Coral"></button>
     <button data-v="creme" style="background:#F4F1EA" title="Creme"></button>
+    <button data-v="grafite" style="background:#3d3d3d" title="Grafite"></button>
+    <button data-v="menta" style="background:#DDE8DD" title="Menta"></button>
   </div>
   <div data-campo="itens"><label>Cor das pílulas</label>
-  <div class="chips" id="corpil"><button data-v="auto">Automática</button><button data-v="vinho">Vinho</button><button data-v="rosa">Rosa</button><button data-v="transl">Transparente</button></div></div>
+  <div class="chips" id="corpil"><button data-v="auto">Automática</button><button data-v="vinho">Vinho</button><button data-v="rosa">Rosa</button><button data-v="transl">Transparente</button><button data-v="menta">Menta</button><button data-v="contorno">Vinho com contorno</button></div></div>
+  <label>Texto fantasma ao fundo</label>
+  <div class="chips" id="fantasmas"><button data-v="nao">Não</button><button data-v="sim">Sim</button></div>
+  <label>Faixa rosa na lateral</label>
+  <div class="chips" id="laterais"><button data-v="nao">Não</button><button data-v="sim">Sim</button></div>
   <label>Tamanho do título</label><input type="range" id="i-ts" min="60" max="160" value="104">
   <label>Tamanho do texto</label><input type="range" id="i-ps" min="30" max="64" value="44">
   <label>Posição do rodapé</label>
@@ -171,7 +197,7 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#e8e4e1;color:#3f3536
 <script>
 const $=id=>document.getElementById(id);
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-const fmt=s=>esc(s.trim()).replace(/==([\s\S]+?)==/g,'<mark>$1</mark>').replace(/~([\s\S]+?)~/g,'<u>$1</u>').replace(/\*\*([\s\S]+?)\*\*/g,'<b>$1</b>').replace(/_([\s\S]+?)_/g,'<span class="cur">$1</span>').replace(/\n/g,'<br>');
+const fmt=s=>esc(s.trim()).replace(/\/\/([\s\S]+?)\/\//g,'<i>$1</i>').replace(/\^([\s\S]+?)\^/g,'<span class="apag">$1</span>').replace(/==([\s\S]+?)==/g,'<mark>$1</mark>').replace(/~([\s\S]+?)~/g,'<u>$1</u>').replace(/\*\*([\s\S]+?)\*\*/g,'<b>$1</b>').replace(/_([\s\S]+?)_/g,'<span class="cur">$1</span>').replace(/\n/g,'<br>');
 
 /* ---------- modelos (baseados nos posts da designer) ---------- */
 const M={
@@ -217,20 +243,52 @@ const M={
    d:{titulo:'Mas, às\nvezes, a\ncriança\nescuta\noutra coisa:',t2:'que o seu valor depende\nde continuar sendo assim.'}},
  legendas:{nome:'Foto com legendas',dica:'Foto em pé à esquerda com frases ligadas por tracinhos e título embaixo.',campos:['itens','titulo','foto'],fundo:'vinho',ts:104,ps:40,
    d:{itens:'“Se comer tudo,\\nganha sobremesa.”\n“Se se comportar,\\ncompro chocolate.”\n“Só ganha doce\\ndepois que terminar\\no prato.”',titulo:'Parece uma\nnegociação\ninocente.'}},
+ capaEtiqueta:{nome:'Capa com etiqueta',dica:'Foto inteira, etiqueta rosa, título enorme claro e texto fantasma. Ótima para capa de carrossel.',campos:['t1','titulo','foto'],fundo:'foto',ts:150,cortit:'creme',tinta:'natural',fant:'sim',
+   d:{t1:'Como se preparar para a',titulo:'primeira\nconsulta?'}},
+ ladoLinha:{nome:'Título + texto à direita',dica:'Texto pequeno, título grande e texto alinhado à direita ao lado da última linha, com linha fina em L.',campos:['t1','titulo','t2'],fundo:'rosa',ts:130,ps:42,
+   d:{t1:'Primeiro, saiba de uma coisa:',titulo:'a consulta\nnão é uma\n//prova.//',t2:'Você não\nprecisa chegar\nsabendo o\ndiagnóstico.\n\nNem ter todas\nas respostas.'}},
+ cartoes:{nome:'Título + cartões tortos',dica:'Título com palavra cursiva e frases em cartões com contorno, levemente inclinados.',campos:['titulo','itens'],fundo:'rosa',ts:112,ps:40,
+   d:{titulo:'Nós médicos,\nqueremos\n_entender_ a\nhistória.',itens:'O que está acontecendo?\nQuando começou?\nCom que frequência acontece?\nE por que vocês decidiram\\nprocurar ajuda agora?'}},
+ colunas:{nome:'Lista em duas colunas',dica:'Texto, título e uma lista em duas colunas com linhas, com frase final em itálico.',campos:['t1','titulo','itens','t2'],fundo:'vinho',ts:118,ps:42,lat:'sim',
+   d:{t1:'Também podem surgir\nperguntas que parecem não ter',titulo:'relação\ndireta com\na queixa.',itens:'Gestação e parto.\nDesenvolvimento.\nSono.\nAlimentação.\nSaúde física.\nHistória familiar.',t2:'//Tudo isso ajuda a compreender\na criança por inteiro.//'}},
+ fotoLista:{nome:'Foto + título + pílulas menta',dica:'Foto inteira, título em menta, pílulas menta e texto final.',campos:['titulo','itens','t2','foto'],fundo:'foto',ts:112,ps:40,cortit:'menta',corpil:'menta',tinta:'vinho',
+   d:{titulo:'E a escola\ntambém\nconta uma\nparte dessa\nhistória.',itens:'Como está o aprendizado?\nAs amizades?\nO comportamento?\nExiste diferença entre o que\\nacontece em casa e na escola?',t2:'Uma mesma criança pode se mostrar\nde formas diferentes em cada ambiente.'}},
+ encaixe:{nome:'Pílulas encaixadas',dica:'Texto, pílulas menta encaixadas e título grafite com palavra cursiva; texto fantasma ao fundo.',campos:['t1','itens','titulo'],fundo:'creme',ts:100,ps:40,cortit:'grafite',corpil:'menta',fant:'sim',
+   d:{t1:'Se já existem outros\nacompanhamentos, conte.',itens:'Psicoterapia.\nFonoaudiologia.\nOutros médicos.\nTerapia ocupacional.\nMedicações atuais ou anteriores.',titulo:'O que já foi _tentado_\ntambém importa.'}},
+ baloesCur:{nome:'Balões manuscritos',dica:'Título grafite, balões só com contorno e letra cursiva, texto com marca-texto; texto fantasma ao fundo.',campos:['titulo','t1','itens','t2'],fundo:'creme',ts:104,ps:40,cortit:'grafite',fant:'sim',bcur:true,
+   d:{titulo:'Durante a\nconsulta,',t1:'talvez todos conversem juntos.',itens:'Talvez o médico\\nqueira ouvir os\\nresponsáveis\\nseparadamente.\nE, dependendo da\\nidade, conversar\\nsozinho com a criança\\nou adolescente.',t2:'==Cada conversa==\n==revela uma parte==\n==diferente da história.=='}},
+ barras:{nome:'Título + barras vinho',dica:'Texto, título com cursiva, barras vinho com texto e frase final em itálico.',campos:['t1','titulo','itens','t2'],fundo:'rosa',ts:100,ps:40,
+   d:{t1:'E existe uma coisa que\nmuitas famílias não sabem:',titulo:'a consulta nem\nsempre termina\nquando vocês _saem_\ndo consultório.',itens:'Às vezes, é justamente depois que começa\\noutra parte importante da avaliação.\\nÉ preciso organizar o que foi ouvido.\nRever a história. Estudar algumas hipóteses.\\nPensar no desenvolvimento daquela criança.',t2:'//Porque uma hora de conversa pode\ntrazer perguntas que precisam de mais\ntempo para serem compreendidas.//'}},
+ caixaLateral:{nome:'Caixa + etiquetas ao lado',dica:'Caixa vinho com texto, etiquetas com contorno ao lado, depois texto, título e texto.',campos:['t1','itens','titulo','t2'],fundo:'rosa',ts:90,ps:40,corpil:'contorno',
+   d:{t1:'Com autorização da\nfamília e respeitando\na confidencialidade,\ntambém pode ser\nimportante **trocar\ninformações com\nquem acompanha\naquela criança.**',itens:'Escola.\nProfessores.\nPsicóloga.\nTerapeutas.\nCuidadores.',titulo:'Isso não significa\nque nada aconteceu.',t2:'//E, por isso, a primeira consulta pode\nterminar sem diagnóstico, sem\nreceita e sem uma resposta definitiva.//\n---\n//Significa que estamos compreendendo\nantes de concluir.//'}},
+ introLado:{nome:'Texto ao lado do título',dica:'Texto pequeno colado no início do título, pílulas e texto final.',campos:['t1','titulo','itens','t2'],fundo:'creme',ts:104,ps:40,cortit:'grafite',corpil:'menta',
+   d:{t1:'Então,\nantes da\nprimeira\nconsulta,',titulo:'não tente\norganizar um\ndiagnóstico.',itens:'Organize a história.\nLeve o que você observa.\nAs mudanças.\nAs dúvidas.',t2:'Porque talvez a pergunta mais\nimportante não seja: “O que\nmeu filho tem?”\n\nMas: **“Do que meu filho precisa?”**'}},
+ fotoMoldura:{nome:'Foto emoldurada',dica:'Fundo com a mesma foto desfocada, título no alto, foto em quadro e texto com marca-texto.',campos:['titulo','t2','foto'],fundo:'foto',ts:96,ps:46,cortit:'vinho',
+   d:{titulo:'Psiquiatra infantil\nou neuropediatra?',t2:'Quando algo preocupa no seu filho, nem\nsempre é fácil **saber por onde começar.**'}},
+ listaSimples:{nome:'Título + lista simples',dica:'Título alinhado à esquerda, texto em linhas e uma pílula no final.',campos:['titulo','t2','itens'],fundo:'rosa',ts:110,ps:44,
+   d:{titulo:'Às vezes, a\npreocupação\naparece no\n//comportamento.//',t2:'Na ansiedade.\nNa escola.\nNo desenvolvimento.\nEm uma mudança que você percebeu e\nnão sabe explicar.\n\nE então surge a dúvida:',itens:'“Quem eu procuro?”'}},
+ etiquetasFoto:{nome:'Foto com etiquetas',dica:'Texto, título, foto em faixa com quatro etiquetas inclinadas nos cantos e texto final.',campos:['t1','titulo','itens','t2','foto'],fundo:'vinho',ts:96,ps:40,
+   d:{t1:'O neuropediatra olha especialmente\npara questões relacionadas ao',titulo:'sistema nervoso e\nao desenvolvimento\nda criança.',itens:'Convulsões.\nAlterações motoras.\nDores de cabeça\\nrecorrentes.\nAtrasos ou mudanças\\nno desenvolvimento.',t2:''}},
+ mosaico:{nome:'Mosaico de blocos',dica:'Blocos arredondados em tons de vinho e rosa, com título, foto e dois textos.',campos:['titulo','t1','t2','foto'],fundo:'vinho',ts:92,ps:44,rod:'topo',
+   d:{titulo:'Mas existe\numa parte\nimportante:',t1:'nem sempre\nessas áreas\nestão\ncompletamente\nseparadas.',t2:'O desenvolvimento\nde uma criança\nnão acontece em\n“==caixinhas==.”'}},
+ apagado:{nome:'Título com palavra apagada',dica:'Título grande com a última palavra clarinha (use ^palavra^), texto ao lado e texto embaixo.',campos:['titulo','t1','t2'],fundo:'rosa',ts:108,ps:40,
+   d:{titulo:'Você também\nnão precisa\nchegar à\nconsulta\nsabendo o\n^//diagnóstico//^.',t1:'Nem ter\ncerteza de\nqual caminho\nseguir.',t2:'Às vezes, a primeira avaliação existe\njustamente **para ajudar a entender isso.**'}},
+ caixaMenta:{nome:'Foto + caixa menta',dica:'Foto inteira, texto em marca-texto no alto e caixa menta com título cinza e texto.',campos:['t1','titulo','t2','foto'],fundo:'foto',ts:96,ps:42,rod:'topo',tinta:'natural',
+   d:{t1:'Quando algo no desenvolvimento, no\ncomportamento ou nas emoções do\nseu filho preocupa você...',titulo:'o primeiro passo\nnão é ter todas\nas respostas.',t2:'É começar a procurar por elas.'}},
  texto:{nome:'Texto + título',dica:'Só tipografia: texto pequeno, título com palavra cursiva e pílulas opcionais.',campos:['t1','titulo','itens'],fundo:'rosa',ts:116,ps:44,
    d:{t1:'Antes de ter palavras para\nexplicar o que sente, ela tem\no brincar para mostrar.',titulo:'Por isso, vale\n_observar_ antes\nde dirigir.',itens:'Quem manda na brincadeira?\nO que se repete?\nComo a história termina?'}}
 };
-const ROTULOS={t1:{frase:'Texto do meio',recorte:'Texto da esquerda',faixas:'Faixa de cima'},t2:{faixas:'Faixa de baixo',selo:'Texto ao lado'},titulo:{adesivo:'Adesivo de cima',adesivoQuadro:'Adesivo de cima',frase:'Título (parte 1)'},titulo2:{cursiva:'Palavra cursiva',adesivo:'Adesivo de baixo',adesivoQuadro:'Adesivo de baixo'}};
+const ROTULOS={t1:{mosaico:'Texto do bloco esquerdo',apagado:'Texto ao lado',caixaMenta:'Texto em marca-texto',capaEtiqueta:'Etiqueta',caixaLateral:'Texto da caixa',introLado:'Texto ao lado do título',frase:'Texto do meio',recorte:'Texto da esquerda',faixas:'Faixa de cima'},t2:{mosaico:'Texto do bloco direito (==palavra== fica rosa)',fotoMoldura:'Texto em marca-texto',caixaLateral:'Textos de baixo (separe com ---)',faixas:'Faixa de baixo',selo:'Texto ao lado'},titulo:{adesivo:'Adesivo de cima',adesivoQuadro:'Adesivo de cima',frase:'Título (parte 1)'},titulo2:{cursiva:'Palavra cursiva',adesivo:'Adesivo de baixo',adesivoQuadro:'Adesivo de baixo'}};
 
-const st={lado:'cima',cortit:'auto',corpil:'auto',m:'pilulas',fundo:'rosa',tinta:'rosa',adesivo:'rosa',rod:'baixo',fmt:'feed',foto:null,slide:1};
+const st={fant:'nao',lat:'nao',lado:'cima',cortit:'auto',corpil:'auto',m:'pilulas',fundo:'rosa',tinta:'rosa',adesivo:'rosa',rod:'baixo',fmt:'feed',foto:null,slide:1};
 
 /* chips */
 $('modelos').innerHTML=Object.entries(M).map(([k,v])=>`<button data-v="${k}">${v.nome}</button>`).join('');
 function chips(id,key,cb){const el=$(id);el.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st[key]=b.dataset.v;cb&&cb();marcar();render()})}
-function marcar(){[['lados','lado'],['cortit','cortit'],['corpil','corpil'],['modelos','m'],['fundos','fundo'],['tintas','tinta'],['adesivos','adesivo'],['rodapes','rod'],['formatos','fmt']].forEach(([id,k])=>[...$(id).children].forEach(b=>b.classList.toggle('on',b.dataset.v===st[k])))}
-chips('modelos','m',()=>carregar(st.m));chips('fundos','fundo');chips('tintas','tinta');chips('adesivos','adesivo');chips('rodapes','rod');chips('formatos','fmt');chips('cortit','cortit');chips('lados','lado');chips('corpil','corpil');
+function marcar(){[['fantasmas','fant'],['laterais','lat'],['lados','lado'],['cortit','cortit'],['corpil','corpil'],['modelos','m'],['fundos','fundo'],['tintas','tinta'],['adesivos','adesivo'],['rodapes','rod'],['formatos','fmt']].forEach(([id,k])=>[...$(id).children].forEach(b=>b.classList.toggle('on',b.dataset.v===st[k])))}
+chips('modelos','m',()=>carregar(st.m));chips('fundos','fundo');chips('tintas','tinta');chips('adesivos','adesivo');chips('rodapes','rod');chips('formatos','fmt');chips('cortit','cortit');chips('lados','lado');chips('fantasmas','fant');chips('laterais','lat');chips('corpil','corpil');
 function carregar(k){const m=M[k];['t1','titulo','titulo2','itens','t2'].forEach(c=>$('i-'+c).value=m.d[c]||'');st.fundo=m.fundo;st.rod=m.rod||'baixo';$('i-ts').value=m.ts||104;$('i-ps').value=m.ps||44;
-  st.cortit=m.cortit||'auto';st.tinta=m.tinta||'rosa';st.corpil=m.corpil||'auto';if(k==='adesivoQuadro')st.adesivo='vinho';if(k==='adesivo')st.adesivo='rosa';}
+  st.fant=m.fant||'nao';st.lat=m.lat||'nao';st.cortit=m.cortit||'auto';st.tinta=m.tinta||'rosa';st.corpil=m.corpil||'auto';if(k==='adesivoQuadro')st.adesivo='vinho';if(k==='adesivo')st.adesivo='rosa';}
 document.querySelectorAll('.painel textarea,.painel input[type=range]').forEach(el=>el.addEventListener('input',render));
 $('i-foto').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{st.foto=r.result;render()};r.readAsDataURL(f)});
 
@@ -240,17 +298,17 @@ function foto(css,extra=''){if(css==='inset:0')extra+=' cheia';const z=v('fz')/1
 function contorno(cor,r){const s=[];for(const k of [1,.7,.4])for(let a=0;a<24;a++){const t=a/24*Math.PI*2;s.push(`${(Math.cos(t)*r*k).toFixed(1)}px ${(Math.sin(t)*r*k).toFixed(1)}px 0 ${cor}`)}return s.join(',')}
 function adesivo(txt,ts){const rosa=st.adesivo==='rosa';const fill=rosa?'#FCC8BF':'#4a1c2e',out=rosa?'#4a1c2e':'#FCC8BF';
   return `<div class="tit centro" style="--tit:${fill};color:${fill};-webkit-text-stroke-color:${fill};text-shadow:${contorno(out,ts*.24)}">${fmt(txt)}</div>`}
-const pil=(cls='')=>`<div class="pilulas ${cls}">${v('itens').split('\n').filter(x=>x.trim()).map(x=>`<div>${fmt(x)}</div>`).join('')}</div>`;
+const pil=(cls='')=>`<div class="pilulas ${cls}">${v('itens').split('\n').filter(x=>x.trim()).map(x=>`<div>${fmt(x.replace(/\\n/g,'\n'))}</div>`).join('')}</div>`;
 
 function render(){
   const m=M[st.m],H=st.fmt==='stories'?1920:1440,dy=(H-1440)/2;
   document.querySelectorAll('[data-campo]').forEach(el=>el.hidden=!m.campos.includes(el.dataset.campo));
-  $('g-fundo').hidden=m.fundo==='foto';$('l-itens')&&($('l-itens').textContent=['baloes','legendas'].includes(st.m)?'Frases (uma por linha; \\n quebra a linha)':'Pílulas (uma por linha)');if(m.campos.includes('lado'))document.querySelector('[data-campo=foto]').hidden=false;
+  $('g-fundo').hidden=m.fundo==='foto';$('l-itens')&&($('l-itens').textContent=['baloes','legendas','cartoes','baloesCur','barras','etiquetasFoto'].includes(st.m)?'Frases (uma por linha; \\n quebra a linha)':'Pílulas (uma por linha)');if(m.campos.includes('lado'))document.querySelector('[data-campo=foto]').hidden=false;
   for(const c in ROTULOS){const l=$('l-'+c);if(l)l.textContent=ROTULOS[c][st.m]||{t1:'Texto de cima',t2:'Texto de baixo',titulo:'Título',titulo2:'Título (parte 2)'}[c]}
   $('dica-modelo').textContent=m.dica;
   const fundo=m.fundo==='foto'?'foto':st.fundo;
   const p=$('post');p.className='post bg-'+fundo+(st.fmt==='stories'?' f-stories':'');
-  const CT={vinho:'#4a1c2e',rosa:'#FCC8BF',coral:'#E07A7F',creme:'#F4F1EA'};if(st.cortit!=='auto')p.style.setProperty('--tit',CT[st.cortit]);else p.style.removeProperty('--tit');
+  const CT={vinho:'#4a1c2e',rosa:'#FCC8BF',coral:'#E07A7F',creme:'#F7F7F0',grafite:'#3d3d3d',menta:'#DDE8DD'};if(st.cortit!=='auto')p.style.setProperty('--tit',CT[st.cortit]);else p.style.removeProperty('--tit');
   if(st.corpil!=='auto')p.classList.add('p-'+st.corpil);
   const ts=+v('ts'),ps=+v('ps');p.style.setProperty('--ts',ts+'px');p.style.setProperty('--ps',ps+'px');
   const T=x=>`<div class="tit">${fmt(x)}</div>`, X=x=>x.trim()?`<div class="txt">${fmt(x)}</div>`:'';
@@ -280,17 +338,41 @@ function render(){
      break;}
    case 'pilulasFoto': h=foto('inset:0')+(v('titulo').trim()?`<div class="camada centro" style="left:80px;right:80px;top:${140+dy}px">${T(v('titulo'))}</div>`:'')+bloco(`${pil('solta')}`,'left:70px;right:50px;padding:120px 0');break;
    case 'tituloFotoPilulas': h=foto('inset:0')+`<div class="camada" style="left:120px;right:120px;top:${280+dy}px;display:flex;flex-direction:column;gap:40px">${T(v('titulo'))}${pil('linha')}</div>`;break;
-   case 'baloes':{const bs=v('itens').split('\n').filter(x=>x.trim()).map(x=>`<div class="balao"><svg viewBox="0 0 370 290" preserveAspectRatio="none"><path d="M185 6C88 6 8 55 8 118c0 47 45 87 108 104-10 22-30 40-58 50 45 2 85-12 108-35 6 1 13 1 19 1 97 0 177-49 177-120S282 6 185 6z"/></svg><span>${fmt(x.replace(/\\n/g,'\n'))}</span></div>`).join('');
+   case 'baloes':{const bs=v('itens').split('\n').filter(x=>x.trim()).map(x=>`<div class="balao ${M[st.m].bcur?'cur-b':''}"><svg viewBox="0 0 370 290" preserveAspectRatio="none"><path d="M185 6C88 6 8 55 8 118c0 47 45 87 108 104-10 22-30 40-58 50 45 2 85-12 108-35 6 1 13 1 19 1 97 0 177-49 177-120S282 6 185 6z"/></svg><span>${fmt(x.replace(/\\n/g,'\n'))}</span></div>`).join('');
      h=bloco(`<div class="centro" style="display:flex;flex-direction:column;align-items:center;gap:70px">${v('titulo').trim()?T(v('titulo')):''}<div class="baloes">${bs}</div>${X(v('t2'))}</div>`);
      h=h.replace(/<svg[^>]*>/g,s=>s);break;}
    case 'cursiva': h=(st.foto||true?foto('inset:0'):'')+`<div class="camada" style="right:190px;bottom:${1440-940+dy}px;text-align:right">${T(v('titulo'))}</div><div class="camada" style="left:130px;top:${900+dy}px"><div class="tit"><span class="cur" style="font-size:2.25em;line-height:1">${fmt(v('titulo2'))}</span></div></div>`;break;
    case 'fotoCaixa': h=foto('inset:0')+`<div class="camada" style="left:120px;top:${360+dy}px;width:760px">${T(v('titulo'))}</div><div class="camada centro txt" style="left:110px;width:600px;top:${360+dy+ts*4.9}px;background:#FDD3D0;color:#3f3536;border-radius:0 70px 70px 70px;padding:50px 40px">${fmt(v('t2'))}</div>`;break;
    case 'legendas':{const its=v('itens').split('\n').filter(x=>x.trim()).map(x=>`<div style="display:flex;align-items:center;gap:22px"><i style="width:44px;height:2px;background:currentColor;flex:none;margin-left:-66px"></i><span>${fmt(x.replace(/\\n/g,'\n'))}</span></div>`).join('');
      h=foto(`left:160px;width:330px;top:${275+dy}px;height:555px`)+`<div class="camada txt" style="left:550px;right:60px;top:${275+dy}px;height:555px;display:flex;flex-direction:column;justify-content:center;gap:40px;--txt:${fundo==='vinho'?'#f7efe9':'#3f3536'};color:var(--txt)">${its}</div><div class="camada centro" style="left:60px;right:60px;top:${910+dy}px">${T(v('titulo'))}</div>`;break;}
+   case 'capaEtiqueta': h=foto('inset:0')+`<div class="camada" style="left:80px;right:40px;top:${670+dy}px"><div class="etiqueta">${fmt(v('t1'))}</div><div class="tit" style="margin-top:10px">${fmt(v('titulo'))}</div>${st.rod!=='nenhum'?'<div class="rod solto" style="font-size:21px;color:#fff">Dra Mariana Freire | <b>Psiquiatria Infantil</b></div>':''}</div>`;break;
+   case 'ladoLinha':{h=bloco(`<div style="position:relative">${X(v('t1'))}<div class="tit" style="margin-top:14px">${fmt(v('titulo'))}</div><div class="txt" style="text-align:right;position:absolute;right:0;top:calc(100% - ${ts*.95}px)">${fmt(v('t2'))}</div><div class="linhaL" style="left:10px;top:calc(100% + 40px);width:460px;height:180px"></div></div>`,'left:170px;right:170px;padding-bottom:300px');break;}
+   case 'cartoes': h=bloco(`<div class="centro" style="display:flex;flex-direction:column;align-items:center;gap:60px">${T(v('titulo'))}<div class="cartoes">${v('itens').split('\n').filter(x=>x.trim()).map(x=>`<div>${fmt(x.replace(/\\n/g,'\n'))}</div>`).join('')}</div></div>`);break;
+   case 'colunas':{const it=v('itens').split('\n').filter(x=>x.trim()),meio=Math.ceil(it.length/2),ord=[];for(let i=0;i<meio;i++){ord.push([it[i],i===meio-1]);if(it[meio+i]!==undefined)ord.push([it[meio+i],i===meio-1]);}
+     h=bloco(`<div class="centro" style="display:flex;flex-direction:column;align-items:stretch;gap:36px">${X(v('t1'))}${T(v('titulo'))}<div class="colunas">${ord.map(([x,u])=>`<div class="${u?'ult':''}">${fmt(x)}</div>`).join('')}</div><div style="margin-top:30px">${X(v('t2'))}</div></div>`,'left:180px;right:160px');break;}
+   case 'fotoLista': h=foto('inset:0')+`<div class="camada" style="left:110px;right:200px;top:${190+dy}px;display:flex;flex-direction:column;gap:28px">${T(v('titulo'))}${pil('esq')}<div style="--txt:#fff">${X(v('t2'))}</div></div>`;break;
+   case 'encaixe': h=`<div class="camada" style="left:160px;right:140px;top:${430+dy}px;display:flex;flex-direction:column;gap:26px;--fundo-cor:#F4F4E7">${X(v('t1'))}<div style="width:760px">${pil('encaixe esq')}</div><div style="margin-top:40px">${T(v('titulo'))}</div></div>`;break;
+   case 'baloesCur':{const bs=v('itens').split('\n').filter(x=>x.trim()).map(x=>`<div class="balao cur-b" style="width:540px;height:330px;font-size:40px;padding:0 50px 20px"><svg viewBox="0 0 370 290" preserveAspectRatio="none"><path d="M185 6C88 6 8 55 8 118c0 47 45 87 108 104-10 22-30 40-58 50 45 2 85-12 108-35 6 1 13 1 19 1 97 0 177-49 177-120S282 6 185 6z"/></svg><span>${fmt(x.replace(/\\n/g,'\n'))}</span></div>`).join('');
+     h=bloco(`<div class="centro" style="display:flex;flex-direction:column;align-items:center;gap:18px">${T(v('titulo'))}${X(v('t1'))}<div class="baloes" style="width:860px;margin-top:50px;--bal:#3f3536">${bs}</div><div class="txt" style="align-self:flex-end;text-align:left;margin-top:10px">${fmt(v('t2'))}</div></div>`,'left:140px;right:120px');break;}
+   case 'barras': h=bloco(`<div class="centro" style="display:flex;flex-direction:column;align-items:stretch;gap:34px">${X(v('t1'))}<div style="margin-top:-20px">${T(v('titulo'))}</div><div class="barras">${v('itens').split('\n').filter(x=>x.trim()).map(x=>`<div>${fmt(x.replace(/\\n/g,'\n'))}</div>`).join('')}</div>${X(v('t2'))}</div>`,'left:120px;right:90px');break;
+   case 'caixaLateral':{const [a,b]=(v('t2')+'\n---\n').split('\n---\n');
+     h=`<div class="camada" style="left:165px;top:${148+dy}px;width:478px;min-height:520px;background:#4a1c2e;padding:50px 30px 50px 52px"><div class="txt" style="--txt:#F4F1EA">${fmt(v('t1'))}</div></div><div class="camada" style="left:612px;top:${185+dy}px;display:flex;flex-direction:column;gap:26px">${v('itens').split('\n').filter(x=>x.trim()).map(x=>`<div style="background:#4a1c2e;color:#F4F1EA;border:2.5px solid #FCC8BF;border-radius:0 30px 30px 0;border-left:0;border-radius:30px;width:290px;padding:2px 30px 8px 48px;font-size:${ps}px;letter-spacing:-.045em">${fmt(x)}</div>`).join('')}</div>
+     <div class="camada centro" style="left:100px;right:100px;top:${730+dy}px;display:flex;flex-direction:column;gap:40px">${X(a)}${T(v('titulo'))}<div style="margin-top:-30px">${X(b)}</div></div>`;break;}
+   case 'introLado': h=bloco(`<div style="display:flex;flex-direction:column;gap:40px"><div style="position:relative;padding-left:0"><div class="txt" style="position:absolute;left:0;top:0;width:200px;line-height:1.05">${fmt(v('t1'))}</div><div class="tit" style="text-indent:${ts*2.05}px;padding-top:${ts*1.25}px">${fmt(v('titulo'))}</div></div><div style="width:520px;align-self:center">${pil('cheia')}</div><div class="centro">${X(v('t2'))}</div></div>`,'left:190px;right:180px');break;
+   case 'fotoMoldura': h=`<div style="position:absolute;inset:-30px;filter:blur(6px);opacity:.35;z-index:0">${foto('inset:0')}</div><div style="position:absolute;inset:0;background:#FEC9C2;opacity:.55;z-index:1"></div>`+foto(`left:150px;right:150px;top:${370+dy}px;height:865px`)+`<div class="camada centro" style="left:40px;right:40px;top:${160+dy}px">${T(v('titulo'))}</div><div class="camada faixa txt" style="left:70px;right:60px;top:${1000+dy}px;--txt:#3f3536;text-align:left">${v('t2').split('\n').map(l=>`<span>${fmt(l)}</span>`).join('<br>')}</div>`;break;
+   case 'listaSimples': h=bloco(`<div style="display:flex;flex-direction:column;gap:34px;align-items:flex-start">${T(v('titulo'))}${X(v('t2'))}${pil('esq')}</div>`,'left:165px;right:70px');break;
+   case 'etiquetasFoto':{const it=v('itens').split('\n').filter(x=>x.trim()),y0=745+dy,pos=[`left:150px;top:${y0-45}px;transform:rotate(-3deg)`,`right:120px;top:${y0-40}px;transform:rotate(4deg)`,`left:95px;top:${y0+210}px;transform:rotate(3deg)`,`right:95px;top:${y0+195}px;transform:rotate(-4deg)`];
+     h=`<div class="camada centro" style="left:80px;right:80px;top:${255+dy}px;display:flex;flex-direction:column;gap:24px">${X(v('t1'))}${T(v('titulo'))}</div>`+foto(`left:122px;right:130px;top:${y0}px;height:255px`)+it.slice(0,4).map((x,i)=>`<div class="etq" style="${pos[i]}">${fmt(x.replace(/\\n/g,'\n'))}</div>`).join('')+`<div class="camada centro" style="left:120px;right:120px;top:${1075+dy}px">${X(v('t2'))}</div>`;break;}
+   case 'mosaico':{const H=st.fmt==='stories'?1920:1440,f=H/1440;
+     h=`<div class="tile" style="left:5px;width:530px;top:-60px;height:${660*f}px;background:#5e2a3e"></div><div class="tile" style="left:5px;width:530px;top:${605*f}px;height:${665*f}px;background:#8f5a6e"></div><div class="tile" style="left:5px;width:530px;top:${1275*f}px;height:300px;background:#c294a8"></div><div class="tile" style="left:545px;right:5px;top:-60px;height:${250*f}px;background:#c294a8"></div><div class="tile" style="left:545px;right:5px;top:${195*f}px;height:${665*f}px">${foto('inset:0')}</div><div class="tile" style="left:545px;right:5px;top:${865*f}px;height:${700*f}px;background:#5a2538"></div><div class="camada" style="left:70px;width:460px;top:${225*f}px">${T(v('titulo'))}</div><div class="camada txt" style="left:135px;width:380px;top:${820*f}px;--txt:#F7F1EC">${fmt(v('t1'))}</div><div class="camada txt" style="left:628px;width:400px;top:${1090*f}px;--txt:#F7F1EC">${fmt(v('t2')).replace(/<mark>/g,'<span style="color:#FCC8BF">').replace(/<\/mark>/g,'</span>')}</div>`;break;}
+   case 'apagado': h=bloco(`<div style="position:relative">${T(v('titulo'))}<div class="txt" style="position:absolute;right:0;bottom:${ts*1.4}px;width:250px">${fmt(v('t1'))}</div></div><div class="centro" style="margin-top:80px">${X(v('t2'))}</div>`,'left:165px;right:170px');break;
+   case 'caixaMenta': h=foto('inset:0')+`<div class="camada centro faixa txt" style="left:90px;right:90px;top:${135+dy}px;--txt:#3f3536;--salvia:#DDE8DD">${v('t1').split('\n').map(l=>`<span>${fmt(l)}</span>`).join('<br>')}</div><div class="camada centro" style="left:130px;right:130px;top:${945+dy}px;background:#D3E3DB;padding:38px 30px 40px;transform:rotate(.6deg);--tit:#8a918c">${T(v('titulo'))}<div class="txt" style="margin-top:20px;--txt:#3f3536">${fmt(v('t2'))}</div></div>`;break;
    case 'selo': h=`<div class="selo" style="top:${432+dy}px"><div class="tit">${fmt(v('titulo'))}</div><div class="txt" style="align-self:flex-start;margin-top:80px">${fmt(v('t2'))}</div></div>`;break;
    case 'faixas': h=foto('inset:0')+`<div class="camada centro faixa txt" style="left:110px;right:110px;top:${200+dy}px;--txt:#3f3536">${v('t1').split('\n').map(l=>`<span>${fmt(l)}</span>`).join('<br>')}</div><div class="camada centro faixa txt" style="left:110px;right:110px;bottom:${180+dy}px;--txt:#3f3536">${v('t2').split('\n').map(l=>`<span>${fmt(l)}</span>`).join('<br>')}</div>`;break;
   }
-  if(st.rod!=='nenhum')h+=`<div class="rod ${st.rod==='topo'?'topo':''}">Dra Mariana Freire | <b>Psiquiatria Infantil</b></div>`;
+  if(st.fant==='sim'){const base=(v('titulo')||v('t1')).replace(/[_*=~\/]/g,'').replace(/\s+/g,' ').trim()+' ';const G={capaEtiqueta:[595,390,975,165],baloesCur:[145,790,530,580]}[st.m]||[560,430,340,760];h=`<div class="fantasma" style="left:${G[0]}px;width:${G[1]}px;top:${G[2]+dy}px;height:${G[3]}px;${st.m==='capaEtiqueta'?'--ftt:uppercase;opacity:.55;color:#fff;font-size:22px':''}">${esc(base.repeat(40))}</div>`+h;}
+  if(st.lat==='sim')h+='<div class="lateral"></div>';
+  if(st.rod!=='nenhum'&&st.m!=='capaEtiqueta')h+=`<div class="rod ${st.rod==='topo'?'topo':''}">Dra Mariana Freire | <b>Psiquiatria Infantil</b></div>`;
   h+='<div class="grao"></div><div class="grao2"></div>';
   p.innerHTML=h;
   // fotos que acompanham o texto (posicionadas pelo espaço reservado)
