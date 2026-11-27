@@ -214,6 +214,8 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#e8e4e1;color:#3f3536
   <div class="chips" id="fantasmas"><button data-v="nao">Não</button><button data-v="sim">Sim</button></div>
   <label>Faixa rosa na lateral</label>
   <div class="chips" id="laterais"><button data-v="nao">Não</button><button data-v="sim">Sim</button></div>
+  <label>Título em adesivo</label>
+  <div class="chips" id="adtits"><button data-v="nao">Não</button><button data-v="rosa">Letra rosa, contorno vinho</button><button data-v="vinho">Letra vinho, contorno rosa</button></div>
   <label>Tamanho do título</label><input type="range" id="i-ts" min="60" max="160" value="104">
   <label>Tamanho do texto</label><input type="range" id="i-ps" min="30" max="64" value="44">
   <label>Posição do rodapé</label>
@@ -325,15 +327,15 @@ const M={
 };
 const ROTULOS={t1:{mosaico:'Texto do bloco esquerdo',apagado:'Texto ao lado',caixaMenta:'Texto em marca-texto',capaEtiqueta:'Etiqueta',caixaLateral:'Texto da caixa',introLado:'Texto ao lado do título',frase:'Texto do meio',recorte:'Texto da esquerda',faixas:'Faixa de cima'},t2:{mosaico:'Texto do bloco direito (==palavra== fica rosa)',fotoMoldura:'Texto em marca-texto',caixaLateral:'Textos de baixo (separe com ---)',faixas:'Faixa de baixo',selo:'Texto ao lado'},titulo:{adesivo:'Adesivo de cima',adesivoQuadro:'Adesivo de cima',frase:'Título (parte 1)'},titulo2:{cursiva:'Palavra cursiva',adesivo:'Adesivo de baixo',adesivoQuadro:'Adesivo de baixo'}};
 
-const st={fant:'nao',lat:'nao',lado:'cima',cortit:'auto',corpil:'auto',m:'pilulas',fundo:'rosa',tinta:'rosa',adesivo:'rosa',rod:'baixo',fmt:'feed45',foto:null,slide:1};
+const st={adtit:'nao',fant:'nao',lat:'nao',lado:'cima',cortit:'auto',corpil:'auto',m:'pilulas',fundo:'rosa',tinta:'rosa',adesivo:'rosa',rod:'baixo',fmt:'feed45',foto:null,slide:1};
 
 /* chips */
 $('modelos').innerHTML=Object.entries(M).map(([k,v])=>`<button data-v="${k}">${v.nome}</button>`).join('');
 function chips(id,key,cb){const el=$(id);el.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st[key]=b.dataset.v;cb&&cb();marcar();render()})}
-function marcar(){[['fantasmas','fant'],['laterais','lat'],['lados','lado'],['cortit','cortit'],['corpil','corpil'],['modelos','m'],['fundos','fundo'],['tintas','tinta'],['adesivos','adesivo'],['rodapes','rod'],['formatos','fmt']].forEach(([id,k])=>[...$(id).children].forEach(b=>b.classList.toggle('on',b.dataset.v===st[k])))}
-chips('modelos','m',()=>carregar(st.m));chips('fundos','fundo');chips('tintas','tinta');chips('adesivos','adesivo');chips('rodapes','rod');chips('formatos','fmt');chips('cortit','cortit');chips('lados','lado');chips('fantasmas','fant');chips('laterais','lat');chips('corpil','corpil');
+function marcar(){[['adtits','adtit'],['fantasmas','fant'],['laterais','lat'],['lados','lado'],['cortit','cortit'],['corpil','corpil'],['modelos','m'],['fundos','fundo'],['tintas','tinta'],['adesivos','adesivo'],['rodapes','rod'],['formatos','fmt']].forEach(([id,k])=>[...$(id).children].forEach(b=>b.classList.toggle('on',b.dataset.v===st[k])))}
+chips('modelos','m',()=>carregar(st.m));chips('fundos','fundo');chips('tintas','tinta');chips('adesivos','adesivo');chips('rodapes','rod');chips('formatos','fmt');chips('cortit','cortit');chips('lados','lado');chips('fantasmas','fant');chips('adtits','adtit');chips('laterais','lat');chips('corpil','corpil');
 function carregar(k){const m=M[k];['t1','titulo','titulo2','itens','t2'].forEach(c=>$('i-'+c).value=m.d[c]||'');st.fundo=m.fundo;st.rod=m.rod||'baixo';$('i-ts').value=m.ts||104;$('i-ps').value=m.ps||44;
-  st.fant=m.fant||'nao';if(k==='fotoMoldura')st.lado='baixo';if(k==='metade')st.lado='cima';st.lat=m.lat||'nao';st.cortit=m.cortit||'auto';st.tinta=m.tinta||'rosa';st.corpil=m.corpil||'auto';if(k==='adesivoQuadro')st.adesivo='vinho';if(k==='adesivo')st.adesivo='rosa';}
+  st.fant=m.fant||'nao';st.adtit='nao';if(k==='fotoMoldura')st.lado='baixo';if(k==='metade')st.lado='cima';st.lat=m.lat||'nao';st.cortit=m.cortit||'auto';st.tinta=m.tinta||'rosa';st.corpil=m.corpil||'auto';if(k==='adesivoQuadro')st.adesivo='vinho';if(k==='adesivo')st.adesivo='rosa';}
 document.querySelectorAll('.painel textarea,.painel input[type=range]').forEach(el=>el.addEventListener('input',()=>render()));
 
 function comprimir(f){return new Promise((ok,err)=>{const r=new FileReader();r.onerror=err;r.onload=()=>{const im=new Image();im.onerror=err;im.onload=()=>{const k=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',.88))};im.src=r.result};r.readAsDataURL(f)})}
@@ -352,7 +354,7 @@ function foto(css,extra=''){if(css==='inset:0')extra+=' cheia';const z=v('fz')/1
   return `<div class="foto tn-${st.tinta} ${st.foto?'':'vazia'} ${extra}" style="${css}">${st.foto?`<img src="${st.foto}" style="object-position:${v('fx')}% ${v('fy')}%;transform:scale(${z});transform-origin:${v('fx')}% ${v('fy')}%">`:''}<div class="tinta"></div></div>`}
 function contorno(cor,r){const s=[];for(const k of [1,.7,.4])for(let a=0;a<24;a++){const t=a/24*Math.PI*2;s.push(`${(Math.cos(t)*r*k).toFixed(1)}px ${(Math.sin(t)*r*k).toFixed(1)}px 0 ${cor}`)}return s.join(',')}
 function adesivo(txt,ts){const rosa=st.adesivo==='rosa';const fill=rosa?'#FCC8BF':'#4a1c2e',out=rosa?'#4a1c2e':'#FCC8BF';
-  return `<div class="tit centro" style="--tit:${fill};color:${fill};-webkit-text-stroke-color:${fill};text-shadow:${contorno(out,ts*.24)}">${fmt(txt)}</div>`}
+  return `<div class="tit centro" style="--tit:${fill};color:${fill};-webkit-text-stroke-color:${fill};paint-order:normal;text-shadow:${contorno(out,ts*.24)}">${fmt(txt)}</div>`}
 const pil=(cls='')=>`<div class="pilulas ${cls}">${v('itens').split('\n').filter(x=>x.trim()).map(x=>`<div>${fmt(x.replace(/\\n/g,'\n'))}</div>`).join('')}</div>`;
 
 function render(){
@@ -435,6 +437,8 @@ function render(){
   if(st.rod!=='nenhum'&&st.m!=='capaEtiqueta'&&st.m!=='fontes')h+=`<div class="rod ${st.rod==='topo'?'topo':''}">Dra Mariana Aquino | <b>Psiquiatria Infantil</b></div>`;
   h+='<div class="grao"></div><div class="grao2"></div>';
   p.innerHTML=h;
+  if(st.adtit!=='nao'&&!['adesivo','adesivoQuadro','selo','fontes'].includes(st.m)){const rosa=st.adtit==='rosa',fill=rosa?'#FCC8BF':'#4a1c2e',out=rosa?'#4a1c2e':'#FCC8BF';
+    p.querySelectorAll('.tit').forEach(el=>{if(el.closest('.selo,.cartao'))return;const fs=parseFloat(getComputedStyle(el).fontSize)||ts;el.style.setProperty('--tit',fill);el.style.color=fill;el.style.webkitTextStrokeColor=fill;el.style.paintOrder='normal';el.style.textShadow=contorno(out,fs*.22);el.style.position='relative';el.style.zIndex=7;});}
   if(st.m==='meme'){const H=ALT(),tt=p.querySelector('.camada .tit'),mm=$('meme'),bb=$('memeB');
     const ajusta=()=>{const k=p.getBoundingClientRect().width/1080||1,th=tt?tt.getBoundingClientRect().height/k:0,mh=mm.getBoundingClientRect().height/k,bh=bb.getBoundingClientRect().height/k;
       const tot=th+(th?50:0)+mh+(bh?50:0)+bh,ini=Math.max(70,(H-tot)/2-30);

@@ -13,6 +13,7 @@
 - Editor: `posts/editor.html` (modelos no estilo da designer, memes do Drive, carrossel em ZIP).
 - Formato do feed: **1080 × 1350** (padrão do editor). Todas as artes, inclusive o slide de fontes, nesse tamanho.
 - Fotos com o filtro **"Clara (rosada)"**: mais claro e rosado, para combinar com o feed. Evitar fotos escuras ou com contraste forte.
+- **Títulos em adesivo** (letra Roca com contorno grosso, opção "Título em adesivo" no editor) em alguns slides do carrossel: letra rosa com contorno vinho em fundo claro; letra vinho com contorno rosa em fundo vinho. Para capas com foto, usar o modelo "Capa com foto em quadro".
 - Alternar fundos (rosa, creme, vinho) e misturar slides só de texto com slides com meme ou foto.
 - Pasta de memes no Drive: https://drive.google.com/drive/folders/1nxEbzypMn-_Sr7YFKo7DscS0g5G5c0-4
   - Algumas imagens são **colagens**: recortar cada figurinha antes de usar.
