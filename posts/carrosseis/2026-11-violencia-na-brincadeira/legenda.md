@@ -1,11 +1,11 @@
-"Ele brinca disso o tempo todo, será que eu devo proibir?" Proibir costuma interromper a brincadeira, mas não apaga o que a criança viu. Muitas vezes, a cena só deixa de aparecer na frente do adulto.
+"Lá em casa a gente evita falar sobre isso, para não assustar." É um cuidado que faz sentido. Mas, muitas vezes, a criança já viu. E, quando ninguém fala, ela fica sozinha para entender o que aconteceu.
 
-Na consulta, a gente usa brinquedos simples, como blocos e bonecos, justamente porque eles deixam espaço para a história da própria criança aparecer. Um castelo pode virar casa, laje, esconderijo. [REVISAR – IACAPAP, cap. A.5]
+Não é preciso começar com uma conversa longa. Pode ser algo simples, no ritmo dela: "Eu vi que você ficou assustado ontem. Quer me contar o que você viu?" Se as palavras não vierem, tudo bem. O desenho e a brincadeira também são formas de contar. [REVISAR – IACAPAP, cap. A.5]
 
-Em casa, o que mais ajuda não é ter a resposta certa. É a presença de um adulto que escuta sem julgar, mantém uma rotina previsível e mostra para a criança que ali ela está segura. Ter alguém assim por perto faz diferença quando o entorno é difícil. [REVISAR – IACAPAP, cap. A.4]
+Depois, mais do que explicar, vale dizer o que continua igual: quem vai buscar na escola, o horário do jantar, o abraço antes de dormir. A rotina previsível ajuda a criança a sentir que, perto de quem cuida dela, existe um lugar seguro. [REVISAR]
 
-Se a brincadeira de vocês anda trazendo cenas assim, ela pode ser um começo para a nossa conversa.
+Se essa conversa anda difícil por aí, a gente pode pensar nela juntos.
 
 Para apoio emocional, o CVV atende pelo 188. Em caso de emergência, ligue 192 (SAMU).
 
-#InfânciaEViolência #OrientaçãoParental
+#SaúdeMentalInfantil #InfânciaEViolência
