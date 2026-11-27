@@ -10,7 +10,7 @@
 
 ## Artes
 - Editor: `posts/editor.html` (modelos no estilo da designer, memes do Drive, carrossel em ZIP).
-- Formato do feed: 1080 × 1440.
+- Formato do feed: **1080 × 1350** (padrão do editor). Todas as artes, inclusive o slide de fontes, nesse tamanho.
 - Alternar fundos (rosa, creme, vinho) e misturar slides só de texto com slides com meme ou foto.
 - Pasta de memes no Drive: https://drive.google.com/drive/folders/1nxEbzypMn-_Sr7YFKo7DscS0g5G5c0-4
   - Algumas imagens são **colagens**: recortar cada figurinha antes de usar.

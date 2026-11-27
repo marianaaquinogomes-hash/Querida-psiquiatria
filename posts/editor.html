@@ -40,6 +40,7 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#e8e4e1;color:#3f3536
 /* =============== POST =============== */
 .post{width:1080px;height:1440px;position:relative;overflow:hidden;font-family:'Poppins',sans-serif;--tit:var(--vinho-txt);--txt:var(--grafite);--pil:var(--pilula);--piltxt:var(--rosa-txt);--rod:var(--grafite);--rodb:var(--vinho-txt);--bal:#4a1c2e;--balf:#FEC9C2}
 .post.f-stories{height:1920px}
+.post.f-feed45{height:1350px}
 /* fundos com manchas suaves */
 .bg-vinho{background:radial-gradient(ellipse 60% 45% at 50% 45%,#6c3048 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 15% 10%,#3c1424 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 90% 95%,#3c1424 0%,transparent 70%),#532233;
   --tit:var(--rosa-txt);--txt:#f7efe9;--pil:var(--rosa);--piltxt:#4b3b3d;--rod:#f3e9e4;--rodb:#fff;--bal:#FCC8BF;--balf:#5a2538}
@@ -217,7 +218,7 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#e8e4e1;color:#3f3536
   <label>Posição do rodapé</label>
   <div class="chips" id="rodapes"><button data-v="baixo">Embaixo</button><button data-v="topo">No topo</button><button data-v="nenhum">Sem rodapé</button></div>
   <label>Formato</label>
-  <div class="chips" id="formatos"><button data-v="feed">Feed 1080×1440</button><button data-v="stories">Stories 1080×1920</button></div>
+  <div class="chips" id="formatos"><button data-v="feed45">Feed 1080×1350</button><button data-v="feed">Feed 1080×1440</button><button data-v="stories">Stories 1080×1920</button></div>
   </div>
 
   <button class="btn" id="baixar-todos">Baixar carrossel inteiro (ZIP)</button>
@@ -234,6 +235,7 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#e8e4e1;color:#3f3536
 
 <script>
 const $=id=>document.getElementById(id);
+const ALT=()=>({stories:1920,feed45:1350}[st.fmt]||1440);
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const fmt=s=>esc(s.trim()).replace(/\/\/([\s\S]+?)\/\//g,'<i>$1</i>').replace(/\^([\s\S]+?)\^/g,'<span class="apag">$1</span>').replace(/==([\s\S]+?)==/g,'<mark>$1</mark>').replace(/~([\s\S]+?)~/g,'<u>$1</u>').replace(/\*\*([\s\S]+?)\*\*/g,'<b>$1</b>').replace(/_([\s\S]+?)_/g,'<span class="cur">$1</span>').replace(/\n/g,'<br>');
 
@@ -322,7 +324,7 @@ const M={
 };
 const ROTULOS={t1:{mosaico:'Texto do bloco esquerdo',apagado:'Texto ao lado',caixaMenta:'Texto em marca-texto',capaEtiqueta:'Etiqueta',caixaLateral:'Texto da caixa',introLado:'Texto ao lado do título',frase:'Texto do meio',recorte:'Texto da esquerda',faixas:'Faixa de cima'},t2:{mosaico:'Texto do bloco direito (==palavra== fica rosa)',fotoMoldura:'Texto em marca-texto',caixaLateral:'Textos de baixo (separe com ---)',faixas:'Faixa de baixo',selo:'Texto ao lado'},titulo:{adesivo:'Adesivo de cima',adesivoQuadro:'Adesivo de cima',frase:'Título (parte 1)'},titulo2:{cursiva:'Palavra cursiva',adesivo:'Adesivo de baixo',adesivoQuadro:'Adesivo de baixo'}};
 
-const st={fant:'nao',lat:'nao',lado:'cima',cortit:'auto',corpil:'auto',m:'pilulas',fundo:'rosa',tinta:'rosa',adesivo:'rosa',rod:'baixo',fmt:'feed',foto:null,slide:1};
+const st={fant:'nao',lat:'nao',lado:'cima',cortit:'auto',corpil:'auto',m:'pilulas',fundo:'rosa',tinta:'rosa',adesivo:'rosa',rod:'baixo',fmt:'feed45',foto:null,slide:1};
 
 /* chips */
 $('modelos').innerHTML=Object.entries(M).map(([k,v])=>`<button data-v="${k}">${v.nome}</button>`).join('');
@@ -353,13 +355,13 @@ function adesivo(txt,ts){const rosa=st.adesivo==='rosa';const fill=rosa?'#FCC8BF
 const pil=(cls='')=>`<div class="pilulas ${cls}">${v('itens').split('\n').filter(x=>x.trim()).map(x=>`<div>${fmt(x.replace(/\\n/g,'\n'))}</div>`).join('')}</div>`;
 
 function render(){
-  const m=M[st.m],H=st.fmt==='stories'?1920:1440,dy=(H-1440)/2;
+  const m=M[st.m],H=ALT(),dy=(H-1440)/2;
   document.querySelectorAll('[data-campo]').forEach(el=>el.hidden=!m.campos.includes(el.dataset.campo));
   $('g-fundo').hidden=m.fundo==='foto';$('l-itens')&&($('l-itens').textContent=['baloes','legendas','cartoes','baloesCur','barras','etiquetasFoto'].includes(st.m)?'Frases (uma por linha; \\n quebra a linha)':'Pílulas (uma por linha)');if(m.campos.includes('lado'))document.querySelector('[data-campo=foto]').hidden=false;
   for(const c in ROTULOS){const l=$('l-'+c);if(l)l.textContent=ROTULOS[c][st.m]||{t1:'Texto de cima',t2:'Texto de baixo',titulo:'Título',titulo2:'Título (parte 2)'}[c]}
   $('dica-modelo').textContent=m.dica;$('l-lado').textContent=st.m==='fotoMoldura'?'Texto em marca-texto':'Foto em';
   const fundo=m.fundo==='foto'?'foto':st.fundo;
-  const p=$('post');p.className='post bg-'+fundo+(st.fmt==='stories'?' f-stories':'');
+  const p=$('post');p.className='post bg-'+fundo+((st.fmt==='stories'?' f-stories':st.fmt==='feed45'?' f-feed45':''));
   const CT={vinho:'#4a1c2e',rosa:'#FCC8BF',coral:'#E07A7F',creme:'#F7F7F0',grafite:'#3d3d3d',menta:'#DDE8DD'};if(st.cortit!=='auto')p.style.setProperty('--tit',CT[st.cortit]);else p.style.removeProperty('--tit');
   if(st.corpil!=='auto')p.classList.add('p-'+st.corpil);
   const ts=+v('ts'),ps=+v('ps');p.style.setProperty('--ts',ts+'px');p.style.setProperty('--ps',ps+'px');
@@ -415,14 +417,14 @@ function render(){
    case 'listaSimples': h=bloco(`<div style="display:flex;flex-direction:column;gap:34px;align-items:flex-start">${T(v('titulo'))}${X(v('t2'))}${pil('esq')}</div>`,'left:165px;right:70px');break;
    case 'etiquetasFoto':{const it=v('itens').split('\n').filter(x=>x.trim()),y0=745+dy,pos=[`left:150px;top:${y0-45}px;transform:rotate(-3deg)`,`right:120px;top:${y0-40}px;transform:rotate(4deg)`,`left:95px;top:${y0+210}px;transform:rotate(3deg)`,`right:95px;top:${y0+195}px;transform:rotate(-4deg)`];
      h=`<div class="camada centro" style="left:80px;right:80px;top:${255+dy}px;display:flex;flex-direction:column;gap:24px">${X(v('t1'))}${T(v('titulo'))}</div>`+foto(`left:122px;right:130px;top:${y0}px;height:255px`)+it.slice(0,4).map((x,i)=>`<div class="etq" style="${pos[i]}">${fmt(x.replace(/\\n/g,'\n'))}</div>`).join('')+`<div class="camada centro" style="left:120px;right:120px;top:${1075+dy}px">${X(v('t2'))}</div>`;break;}
-   case 'mosaico':{const H=st.fmt==='stories'?1920:1440,f=H/1440;
+   case 'mosaico':{const H=ALT(),f=H/1440;
      h=`<div class="tile" style="left:5px;width:530px;top:-60px;height:${660*f}px;background:#5e2a3e"></div><div class="tile" style="left:5px;width:530px;top:${605*f}px;height:${665*f}px;background:#8f5a6e"></div><div class="tile" style="left:5px;width:530px;top:${1275*f}px;height:300px;background:#c294a8"></div><div class="tile" style="left:545px;right:5px;top:-60px;height:${250*f}px;background:#c294a8"></div><div class="tile" style="left:545px;right:5px;top:${195*f}px;height:${665*f}px">${foto('inset:0')}</div><div class="tile" style="left:545px;right:5px;top:${865*f}px;height:${700*f}px;background:#5a2538"></div><div class="camada" style="left:70px;width:460px;top:${225*f}px">${T(v('titulo'))}</div><div class="camada txt" style="left:135px;width:380px;top:${820*f}px;--txt:#F7F1EC">${fmt(v('t1'))}</div><div class="camada txt" style="left:628px;width:400px;top:${1090*f}px;--txt:#F7F1EC">${fmt(v('t2')).replace(/<mark>/g,'<span style="color:#FCC8BF">').replace(/<\/mark>/g,'</span>')}</div>`;break;}
    case 'apagado': h=bloco(`<div style="position:relative">${T(v('titulo'))}<div class="txt" style="position:absolute;right:0;bottom:${ts*1.4}px;width:250px">${fmt(v('t1'))}</div></div><div class="centro" style="margin-top:80px">${X(v('t2'))}</div>`,'left:165px;right:170px');break;
    case 'caixaMenta': h=foto('inset:0')+`<div class="camada centro faixa txt" style="left:90px;right:90px;top:${135+dy}px;--txt:#3f3536;--salvia:#DDE8DD">${v('t1').split('\n').map(l=>`<span>${fmt(l)}</span>`).join('<br>')}</div><div class="camada centro" style="left:130px;right:130px;top:${945+dy}px;background:#D3E3DB;padding:38px 30px 40px;transform:rotate(.6deg);--tit:#8a918c">${T(v('titulo'))}<div class="txt" style="margin-top:20px;--txt:#3f3536">${fmt(v('t2'))}</div></div>`;break;
-   case 'meme':{const temT=v('titulo').trim(),temB=v('t2').trim(),H=st.fmt==='stories'?1920:1440;
+   case 'meme':{const temT=v('titulo').trim(),temB=v('t2').trim(),H=ALT();
      const topo=temT?Math.round(H*.1):Math.round(H*.12);
-     h=`<div class="camada centro" style="left:70px;right:70px;top:${topo}px">${temT?T(v('titulo')):''}</div><div class="meme" id="meme" style="top:${topo}px;--mh:${temB?700:860}px">${st.foto?`<img src="${st.foto}" alt="">`:'<div class="semfoto">escolha um meme em “Foto ou meme”</div>'}</div><div class="camada centro" id="memeB" style="left:110px;right:110px;top:${topo}px">${X(v('t2'))}</div>`;break;}
-   case 'fontes':{const H=st.fmt==='stories'?1920:1440;
+     h=`<div class="camada centro" style="left:70px;right:70px;top:${topo}px">${temT?T(v('titulo')):''}</div><div class="meme" id="meme" style="top:${topo}px;--mh:${Math.round((temB?700:860)*Math.min(1,(ALT()-90)/1440))}px">${st.foto?`<img src="${st.foto}" alt="">`:'<div class="semfoto">escolha um meme em “Foto ou meme”</div>'}</div><div class="camada centro" id="memeB" style="left:110px;right:110px;top:${topo}px">${X(v('t2'))}</div>`;break;}
+   case 'fontes':{const H=ALT();
      h=`<div class="fontes" style="--ft:${122+dy}px"></div><div class="camada centro" style="left:140px;right:140px;top:${dy}px;height:${H*0.62}px;display:flex;flex-direction:column;justify-content:center;gap:24px;--tit:#9b506e"><div class="tit">${fmt(v('titulo'))}</div><div class="txt" style="--txt:#4a1c2e;font-size:46px">${fmt(v('t2'))}</div></div><div class="cartao" style="top:${H-dy-470}px"><img src="${AVATAR}" alt=""><div><b>Querida Psiquiatria</b><span>Dra. Mariana Aquino</span><span>CRM 52-1253247 · RQE 59.816</span><span>Saúde mental infantil</span></div></div>`;break;}
    case 'selo': h=`<div class="selo" style="top:${432+dy}px"><div class="tit">${fmt(v('titulo'))}</div><div class="txt" style="align-self:flex-start;margin-top:80px">${fmt(v('t2'))}</div></div>`;break;
    case 'faixas': h=foto('inset:0')+`<div class="camada centro faixa txt" style="left:110px;right:110px;top:${200+dy}px;--txt:#3f3536">${v('t1').split('\n').map(l=>`<span>${fmt(l)}</span>`).join('<br>')}</div><div class="camada centro faixa txt" style="left:110px;right:110px;bottom:${180+dy}px;--txt:#3f3536">${v('t2').split('\n').map(l=>`<span>${fmt(l)}</span>`).join('<br>')}</div>`;break;
@@ -432,11 +434,11 @@ function render(){
   if(st.rod!=='nenhum'&&st.m!=='capaEtiqueta'&&st.m!=='fontes')h+=`<div class="rod ${st.rod==='topo'?'topo':''}">Dra Mariana Aquino | <b>Psiquiatria Infantil</b></div>`;
   h+='<div class="grao"></div><div class="grao2"></div>';
   p.innerHTML=h;
-  if(st.m==='meme'){const H=st.fmt==='stories'?1920:1440,tt=p.querySelector('.camada .tit'),mm=$('meme'),bb=$('memeB');
+  if(st.m==='meme'){const H=ALT(),tt=p.querySelector('.camada .tit'),mm=$('meme'),bb=$('memeB');
     const ajusta=()=>{const k=p.getBoundingClientRect().width/1080||1,th=tt?tt.getBoundingClientRect().height/k:0,mh=mm.getBoundingClientRect().height/k,bh=bb.getBoundingClientRect().height/k;
       const tot=th+(th?50:0)+mh+(bh?50:0)+bh,ini=Math.max(70,(H-tot)/2-30);
       if(tt)tt.parentElement.style.top=ini+'px';mm.style.top=(ini+th+(th?50:0))+'px';bb.style.top=(ini+th+(th?50:0)+mh+(bh?50:0))+'px';};
-    const im=mm.querySelector('img');const tam=()=>{if(im&&im.naturalWidth){const k2=Math.min(780/im.naturalWidth,(temB2?700:860)/im.naturalHeight,3);im.style.width=Math.round(im.naturalWidth*k2)+'px';}ajusta()};const temB2=!!v('t2').trim();if(im&&!im.complete)im.onload=tam;else tam();}
+    const im=mm.querySelector('img');const tam=()=>{if(im&&im.naturalWidth){const k2=Math.min(780/im.naturalWidth,Math.round((temB2?700:860)*Math.min(1,(ALT()-90)/1440))/im.naturalHeight,3);im.style.width=Math.round(im.naturalWidth*k2)+'px';}ajusta()};const temB2=!!v('t2').trim();if(im&&!im.complete)im.onload=tam;else tam();}
   // fotos que acompanham o texto (posicionadas pelo espaço reservado)
   if(st.m==='fotoMeio'||st.m==='fotoQuadro'){const ph=p.querySelector('.camada [style*="height:260px"],.camada [style*="height:500px"]');
     const r=ph.getBoundingClientRect(),pr=p.getBoundingClientRect(),k=pr.width/1080;
@@ -449,7 +451,7 @@ function render(){
 addEventListener('resize',render);
 
 async function baixar(){
-  await document.fonts.ready;const H=st.fmt==='stories'?1920:1440;
+  await document.fonts.ready;const H=ALT();
   const s=$('escala').style.transform;$('escala').style.transform='none';
   try{const url=await htmlToImage.toPng($('post'),{width:1080,height:H,pixelRatio:1});
     const a=document.createElement('a');a.download=`slide-${String(cur+1).padStart(2,'0')}.png`;a.href=url;a.click();}
@@ -491,7 +493,7 @@ async function salvar(){clearTimeout(tSalvar);tSalvar=setTimeout(async()=>{try{c
 async function abrir(){try{const d=await db();return await new Promise(ok=>{const r=d.transaction('k').objectStore('k').get('carrossel');r.onsuccess=()=>ok(r.result);r.onerror=()=>ok(null)})}catch(e){return null}}
 const renderBase=render;
 render=function(){renderBase();if(!carregando&&slides.length){slides[cur]=snap();const b=$('carrossel').querySelector('.sl.on small');if(b){const s=slides[cur],tx=(s.v.titulo||s.v.t1||s.v.itens||'').replace(/[_*=~^\/]/g,'').split('\n')[0];b.textContent=M[st.m].nome+' · '+tx}salvar();}};
-async function png(){await document.fonts.ready;const H=st.fmt==='stories'?1920:1440;const s=$('escala').style.transform;$('escala').style.transform='none';
+async function png(){await document.fonts.ready;const H=ALT();const s=$('escala').style.transform;$('escala').style.transform='none';
   try{return await htmlToImage.toPng($('post'),{width:1080,height:H,pixelRatio:1})}finally{$('escala').style.transform=s}}
 $('baixar-todos').onclick=async()=>{const b=$('baixar-todos'),txt=b.textContent;slides[cur]=snap();const volta=cur;
   try{const zip=new JSZip();for(let i=0;i<slides.length;i++){b.textContent=`Gerando slide ${i+1} de ${slides.length}...`;cur=i;aplicar(slides[i]);await new Promise(r=>setTimeout(r,120));
