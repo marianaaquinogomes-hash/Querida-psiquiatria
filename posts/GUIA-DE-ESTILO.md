@@ -15,6 +15,7 @@
 - Pasta de memes no Drive: https://drive.google.com/drive/folders/1nxEbzypMn-_Sr7YFKo7DscS0g5G5c0-4
   - Algumas imagens são **colagens**: recortar cada figurinha antes de usar.
 - Quando o conteúdo usar referências, terminar o carrossel com o slide **"Fontes + cartão"** (selo rosa com as referências e o cartão com foto, CRM 52-1253247 e RQE 59.816).
+- Slide de fontes **oficial**: o vídeo-modelo `posts/modelos-video/fontes-template.mp4` (1080×1350, 5 s, com áudio). Escrever as referências abaixo de "Fontes:", centralizadas, na fonte Inter, em cor creme (#F6F0E7), com o título da obra em itálico. O cartão do modelo diz "Aguino"; corrigir para "Aquino".
 - Carrosséis prontos ficam em `posts/carrosseis/AAAA-MM-tema/` (slides, ZIP e `legenda.md`).
 
 ## Legendas: estilo aprovado
