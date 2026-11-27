@@ -14,6 +14,7 @@
 - Alternar fundos (rosa, creme, vinho) e misturar slides só de texto com slides com meme ou foto.
 - Pasta de memes no Drive: https://drive.google.com/drive/folders/1nxEbzypMn-_Sr7YFKo7DscS0g5G5c0-4
   - Algumas imagens são **colagens**: recortar cada figurinha antes de usar.
+- Quando o conteúdo usar referências, terminar o carrossel com o slide **"Fontes + cartão"** (selo rosa com as referências e o cartão com foto, CRM 52-1253247 e RQE 59.816).
 - Carrosséis prontos ficam em `posts/carrosseis/AAAA-MM-tema/` (slides, ZIP e `legenda.md`).
 
 ## Legendas: estilo aprovado
