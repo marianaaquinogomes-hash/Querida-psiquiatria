@@ -1,6 +1,6 @@
 import base64
 S='/tmp/claude-0/-home-user-Querida-psiquiatria/dd765379-9e4a-53e2-ba7e-a1a50ea79544/scratchpad/'
-U='../originais/'  # fotos originais
+U='../originais/'
 f={n:'data:font/woff2;base64,'+base64.b64encode(open(S+'woff/%s.woff2'%n,'rb').read()).decode() for n in ['Roca','Cretina','PoppinsR','PoppinsB']}
 ORD={'61742049':'01','56d32a89':'02','fa5b56d3':'03','c81c5614':'04','473a1c4e':'05','edccca27':'06'}
 img=lambda k:U+ORD[k]+'.png'
@@ -40,17 +40,16 @@ P[1]=page(f'''<div class="ph" style="inset:0"><img src="{img('61742049')}" style
 <div class="a pil" style="right:70px;top:1050px;z-index:31;transform:rotate(-3deg);background:#4a1c2e;color:#FCC8BF;font-size:28px">arrasta pro lado →</div>
 <div class="faixa"></div>''')
 # 2-5 erros
-erros=[('56d32a89','Dar um celular próprio aos <span style="font-size:1.15em">6</span> anos',"“porque todos os amiguinhos têm”","50% 40%"),
-       ('fa5b56d3','Dar o remédio só na véspera da prova',"e jurar que “não funciona”","50% 35%"),
+erros=[('56d32a89','Dar um celular próprio<br>aos <span style="font-size:1.15em">6</span> anos',"“porque todos os amiguinhos têm”","50% 40%"),
+       ('fa5b56d3','Dar o remédio só na<br>véspera da prova',"e jurar que “não funciona”","50% 35%"),
        ('c81c5614','Parar o remédio sozinho',"porque ele “já está bem”","50% 30%"),
-       ('473a1c4e','“Lá em casa todo mundo dorme tarde,',"é o ritmo da família”","50% 35%")]
+       ('473a1c4e','“Lá em casa todo mundo<br>dorme tarde,',"é o ritmo da família”","50% 35%")]
 for i,(k,t1,t2,pos) in enumerate(erros):
-    P[i+2]=page(f'''<div class="ph" style="left:0;right:0;top:0;height:800px"><img src="{img(k)}" style="left:-60px;top:-215px;width:1200px"></div>
-<div class="a ouro" style="left:0;right:0;top:770px;bottom:0;z-index:3;clip-path:polygon(0 4%,10% 2%,22% 5%,35% 1%,48% 4%,60% 0,74% 4%,86% 1%,100% 3%,100% 100%,0 100%)"></div>
-<div class="a pil" style="left:50%;transform:translateX(-50%) rotate(-2deg);top:735px;z-index:6;background:#4a1c2e;color:#FCC8BF;font-size:34px;padding:10px 34px 14px">erro nº <span class="R" style="-webkit-text-stroke:1px #FCC8BF;font-size:40px">{i+1}</span></div>
-<div class="a" style="left:80px;right:80px;top:850px;z-index:6;text-align:center">
- <div class="R" style="font-size:76px;line-height:1.02">{t1}</div>
- <div class="C" style="font-size:72px;color:#9B506E;-webkit-text-stroke:1.4px #9B506E;margin-top:22px;line-height:1.12">{t2}</div></div>''')
+    P[i+2]=page(f'''<div class="ph" style="left:0;right:0;top:0;height:900px"><img src="../fotos-limpas/0{i+2}.png" style="left:-12px;top:-8px;width:1104px"></div>
+<div class="a ouro" style="left:0;right:0;top:860px;bottom:0;z-index:3;clip-path:polygon(0 5%,10% 2%,22% 6%,35% 1%,48% 5%,60% 0,74% 5%,86% 1%,100% 4%,100% 100%,0 100%)"></div>
+<div class="a" style="left:70px;right:70px;top:925px;z-index:6;text-align:center">
+ <div class="R" style="font-size:66px;line-height:1.02">{t1}</div>
+ <div class="C" style="font-size:62px;color:#9B506E;-webkit-text-stroke:1.3px #9B506E;margin-top:16px;line-height:1.1">{t2}</div></div>''')
 # 6 final
 P[6]=page(f'''<div class="ph" style="inset:0"><img src="{img('edccca27')}" style="left:0;top:0;width:1080px"></div>
 {glow("0 0","#F2D9A6")}
