@@ -58,9 +58,9 @@ body{font-family:'Poppins',system-ui,sans-serif;background:#e8e4e1;color:#3f3536
 .rod.solto{position:static;text-align:left;margin-top:24px}
 .lateral{position:absolute;left:0;top:0;bottom:0;width:50px;background:#FEC9C1;border-radius:0 40px 40px 0;z-index:3}
 /* tipografia */
-.tit{font-family:'Roca Two',serif;font-size:var(--ts,104px);line-height:.93;letter-spacing:-.035em;color:var(--tit);-webkit-text-stroke:calc(var(--ts,104px)*.055) var(--tit);paint-order:stroke fill}
+.tit{font-family:'Roca Two',serif;font-size:var(--ts,104px);line-height:.98;letter-spacing:-.008em;word-spacing:.04em;color:var(--tit);-webkit-text-stroke:calc(var(--ts,104px)*.04) var(--tit);paint-order:stroke fill}
 .tit .cur,.cur{font-family:'Cretina',cursive;letter-spacing:0;-webkit-text-stroke:.03em currentColor;font-size:.95em;line-height:.8}
-.txt{font-size:var(--ps,44px);line-height:1.12;letter-spacing:-.045em;color:var(--txt)}
+.txt{font-size:var(--ps,44px);line-height:1.2;letter-spacing:-.015em;color:var(--txt)}
 .txt b{font-weight:700}
 .txt mark,.pilulas mark{background:var(--salvia);color:#3f3536;padding:0 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .txt u{text-decoration-thickness:3px;text-underline-offset:8px}
@@ -354,7 +354,7 @@ function foto(css,extra=''){if(css==='inset:0')extra+=' cheia';const z=v('fz')/1
   return `<div class="foto tn-${st.tinta} ${st.foto?'':'vazia'} ${extra}" style="${css}">${st.foto?`<img src="${st.foto}" style="object-position:${v('fx')}% ${v('fy')}%;transform:scale(${z});transform-origin:${v('fx')}% ${v('fy')}%">`:''}<div class="tinta"></div></div>`}
 function contorno(cor,r){const s=[];for(const k of [1,.7,.4])for(let a=0;a<24;a++){const t=a/24*Math.PI*2;s.push(`${(Math.cos(t)*r*k).toFixed(1)}px ${(Math.sin(t)*r*k).toFixed(1)}px 0 ${cor}`)}return s.join(',')}
 function adesivo(txt,ts){const rosa=st.adesivo==='rosa';const fill=rosa?'#FCC8BF':'#4a1c2e',out=rosa?'#4a1c2e':'#FCC8BF';
-  return `<div class="tit centro" style="--tit:${fill};color:${fill};-webkit-text-stroke-color:${fill};paint-order:normal;text-shadow:${contorno(out,ts*.24)}">${fmt(txt)}</div>`}
+  return `<div class="tit centro" style="--tit:${fill};color:${fill};-webkit-text-stroke-color:${fill};paint-order:normal;line-height:1.08;letter-spacing:0;text-shadow:${contorno(out,ts*.22)}">${fmt(txt)}</div>`}
 const pil=(cls='')=>`<div class="pilulas ${cls}">${v('itens').split('\n').filter(x=>x.trim()).map(x=>`<div>${fmt(x.replace(/\\n/g,'\n'))}</div>`).join('')}</div>`;
 
 function render(){
@@ -438,7 +438,7 @@ function render(){
   h+='<div class="grao"></div><div class="grao2"></div>';
   p.innerHTML=h;
   if(st.adtit!=='nao'&&!['adesivo','adesivoQuadro','selo','fontes'].includes(st.m)){const rosa=st.adtit==='rosa',fill=rosa?'#FCC8BF':'#4a1c2e',out=rosa?'#4a1c2e':'#FCC8BF';
-    p.querySelectorAll('.tit').forEach(el=>{if(el.closest('.selo,.cartao'))return;const fs=parseFloat(getComputedStyle(el).fontSize)||ts;el.style.setProperty('--tit',fill);el.style.color=fill;el.style.webkitTextStrokeColor=fill;el.style.paintOrder='normal';el.style.textShadow=contorno(out,fs*.22);el.style.position='relative';el.style.zIndex=7;});}
+    p.querySelectorAll('.tit').forEach(el=>{if(el.closest('.selo,.cartao'))return;const fs=parseFloat(getComputedStyle(el).fontSize)||ts;el.style.setProperty('--tit',fill);el.style.color=fill;el.style.webkitTextStrokeColor=fill;el.style.paintOrder='normal';el.style.textShadow=contorno(out,fs*.22);el.style.position='relative';el.style.zIndex=7;el.style.lineHeight='1.08';el.style.letterSpacing='0';});}
   if(st.m==='meme'){const H=ALT(),tt=p.querySelector('.camada .tit'),mm=$('meme'),bb=$('memeB');
     const ajusta=()=>{const k=p.getBoundingClientRect().width/1080||1,th=tt?tt.getBoundingClientRect().height/k:0,mh=mm.getBoundingClientRect().height/k,bh=bb.getBoundingClientRect().height/k;
       const tot=th+(th?50:0)+mh+(bh?50:0)+bh,ini=Math.max(70,(H-tot)/2-30);
