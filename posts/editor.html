@@ -372,7 +372,7 @@ function render(){
    case 'pilulasCima': h=bloco(`<div style="padding-left:120px;display:flex;flex-direction:column;gap:56px"><div style="width:600px">${pil('esq')}</div>${T(v('titulo'))}</div>`,'left:0;right:0');break;
    case 'fotoMeio': h=bloco(`<div class="centro" style="display:flex;flex-direction:column;align-items:center;gap:40px">${X(v('t1'))}${T(v('titulo'))}<div style="height:260px;width:100%"></div>${X(v('t2'))}</div>`);
      h+=`<div id="ancora"></div>`;break;
-   case 'fotoQuadro': h=bloco(`<div class="centro" style="display:flex;flex-direction:column;align-items:center;gap:36px">${X(v('t1'))}<div style="position:relative;z-index:6;margin-bottom:-60px;text-shadow:${contorno(fundo==='vinho'?'#542335':fundo==='rosa'?'#FEC9C2':'#F4F4E7',ts*.16)}">${T(v('titulo'))}</div><div style="height:360px;width:100%"></div>${X(v('t2'))}</div>`);
+   case 'fotoQuadro': h=bloco(`<div class="centro" style="display:flex;flex-direction:column;align-items:center;gap:36px">${X(v('t1'))}<div style="position:relative;z-index:6;margin-bottom:-60px">${T(v('titulo'))}</div><div style="height:500px;width:100%"></div>${X(v('t2'))}</div>`);
      h+=`<div id="ancora"></div>`;break;
    case 'adesivo': h=foto('inset:0')+`<div class="camada" style="left:0;right:0;top:${70+dy}px">${adesivo(v('titulo'),ts)}</div><div class="camada" style="left:0;right:0;bottom:${200+dy}px">${adesivo(v('titulo2'),ts)}</div>`;break;
    case 'adesivoQuadro': h=foto(`left:150px;right:150px;top:${300+dy}px;height:865px`)+`<div class="camada" style="left:0;right:0;top:${175+dy}px">${adesivo(v('titulo'),ts)}</div><div class="camada" style="left:0;right:0;top:${925+dy}px">${adesivo(v('titulo2'),ts)}</div>`;break;
@@ -438,9 +438,9 @@ function render(){
       if(tt)tt.parentElement.style.top=ini+'px';mm.style.top=(ini+th+(th?50:0))+'px';bb.style.top=(ini+th+(th?50:0)+mh+(bh?50:0))+'px';};
     const im=mm.querySelector('img');const tam=()=>{if(im&&im.naturalWidth){const k2=Math.min(780/im.naturalWidth,(temB2?700:860)/im.naturalHeight,3);im.style.width=Math.round(im.naturalWidth*k2)+'px';}ajusta()};const temB2=!!v('t2').trim();if(im&&!im.complete)im.onload=tam;else tam();}
   // fotos que acompanham o texto (posicionadas pelo espaço reservado)
-  if(st.m==='fotoMeio'||st.m==='fotoQuadro'){const ph=p.querySelector('.camada [style*="height:260px"],.camada [style*="height:360px"]');
+  if(st.m==='fotoMeio'||st.m==='fotoQuadro'){const ph=p.querySelector('.camada [style*="height:260px"],.camada [style*="height:500px"]');
     const r=ph.getBoundingClientRect(),pr=p.getBoundingClientRect(),k=pr.width/1080;
-    const top=(r.top-pr.top)/k, w=st.m==='fotoMeio'?830:530, hh=st.m==='fotoMeio'?260:370;
+    const top=(r.top-pr.top)/k, w=st.m==='fotoMeio'?830:640, hh=st.m==='fotoMeio'?260:510;
     p.insertAdjacentHTML('afterbegin',foto(`left:${(1080-w)/2}px;width:${w}px;top:${top}px;height:${hh}px`));}
   $('tam').textContent=`1080 × ${H} px · prévia reduzida`;
   const k=Math.min((innerWidth>900?innerWidth-430:innerWidth-30)/1080,(innerHeight-130)/H,1);
