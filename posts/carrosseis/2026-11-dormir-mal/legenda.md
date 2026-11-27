@@ -1,4 +1,4 @@
-"Ele anda tão irritado." Antes de procurar a causa só no comportamento, vale olhar também para as noites.
+Quando a criança anda mais irritada, é comum procurar a causa só no comportamento. Vale olhar também para as noites.
 
 Algumas perguntas ajudam a começar. Quanto tempo ele leva para pegar no sono? Acorda durante a noite? Ronca ou dorme de boca aberta? Acorda cansado, mesmo depois de uma noite inteira na cama? [REVISAR]
 
