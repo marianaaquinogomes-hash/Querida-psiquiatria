@@ -111,3 +111,13 @@ P1=page('rosa',f'''
 <div class="a P" style="left:560px;right:40px;top:1030px;font-size:40px;line-height:1.5"><span style="background:#D6E5DA;padding:2px 14px 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone">E você nem abriu<br>a mensagem.</span></div>
 <div class="a P" style="left:560px;top:1190px;font-size:28px;background:#5a2538;color:#FCC8BF;border-radius:30px;padding:6px 26px 10px">arrasta pro lado →</div>''')
 open(S+'n2/s01.html','w').write(P1)
+# 1 (versão aprovada) — título no alto, foto retangular, pílula na borda, frase final
+P1=page('rosa',f'''
+<div class="a c P" style="left:0;right:0;top:215px;font-size:36px;letter-spacing:.05em">CADA NOTIFICAÇÃO ROUBA CERCA DE</div>
+<div class="a c R" style="left:0;right:0;top:268px;font-size:150px">7 segundos</div>
+<div class="a c C" style="left:0;right:0;top:405px;font-size:118px;-webkit-text-stroke:1.8px #4a1c2e">da sua atenção.</div>
+<div class="ph" style="left:165px;right:165px;top:545px;height:520px"><img src="{m(15)}" style="object-position:50% 62%;filter:saturate(.75) sepia(.15) brightness(1.06) contrast(.92)"></div>
+<div class="a P" style="right:135px;top:575px;font-size:30px;background:#FCC8BF;border:2px solid #4a1c2e;padding:2px 20px 6px;transform:rotate(4deg);z-index:5">arrasta pro lado</div>
+<div class="a pil" style="left:50%;transform:translateX(-50%);top:1038px;white-space:nowrap;font-size:40px;padding:14px 46px 18px;box-shadow:0 0 0 4px #F6C6BF;z-index:5">E você nem abriu a mensagem.</div>
+<div class="a c P" style="left:0;right:0;top:1158px;font-size:44px;color:#3f3536">Bastou o ícone aparecer.</div>''')
+open(S+'n2/s01.html','w').write(P1)
