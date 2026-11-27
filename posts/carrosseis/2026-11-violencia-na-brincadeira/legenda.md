@@ -1,4 +1,4 @@
-Infelizmente, essa história é rotina na vida de muitas crianças com quem convivo no serviço público.
+Infelizmente, essa história é rotina na vida de muitas crianças com quem convivo no serviço público. Faz parte da minha rotina também, a ponto de eu já ter normalizado. Mas eu sou adulta, com o cérebro já formado, e sei o que é certo e o que é errado. A criança ainda está aprendendo isso, e aprende com o que vê todos os dias. [REVISAR]
 
 Muitas famílias evitam falar sobre a violência perto das crianças, para não assustar. É um cuidado que faz sentido. Mas, muitas vezes, a criança já viu. E, quando ninguém fala, ela fica sozinha para entender o que aconteceu.
 
