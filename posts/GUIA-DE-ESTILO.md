@@ -6,6 +6,7 @@
 - Pediatra com pós-graduação em psiquiatria infantil. Atendimento presencial na **Zona Sul** e na **Barra da Tijuca**.
 - Agendamento: "fale com a minha equipe pelo link da bio".
 - No site há a escala SNAP-IV (triagem de TDAH) para pais e professores.
+- Também atua no **serviço público** (fato fornecido por ela; pode ser citado quando fizer sentido).
 - Não é mãe: nunca escrever como mãe nem citar vida familiar.
 
 ## Artes
