@@ -100,3 +100,14 @@ P[10]=page('vinho',f'''
 {bal("E manda pra quem<br>vive com o celular<br>apitando.","left:420px;top:830px",True)}
 <div class="a c C" style="left:0;right:0;top:1140px;font-size:60px;-webkit-text-stroke:.8px #FCC8BF">com carinho, Dra. Mariana</div>''','#F7EFEA')
 for k,v in P.items(): open(S+'n2/s%02d.html'%k,'w').write(v)
+# 1 — capa: foto à esquerda se dissolvendo no rosa, título à direita e subtítulo em marca-texto (ref. "Nem toda criança agitada")
+P1=page('rosa',f'''
+<div class="ph" style="left:-170px;top:150px;width:900px;height:1050px;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 82%,transparent 100%)"><img src="{m(15)}" style="object-position:50% 45%;filter:saturate(.7) sepia(.15) brightness(1.06) contrast(.92)"></div>
+<div class="a" style="left:0;right:0;top:0;bottom:0;background:linear-gradient(90deg,rgba(246,198,191,0) 40%,rgba(246,198,191,.85) 54%,#F6C6BF 62%)"></div>
+<div class="a" style="left:0;right:0;bottom:0;height:300px;background:linear-gradient(0deg,#F6C6BF,rgba(246,198,191,0))"></div>
+<div class="a P" style="left:560px;right:60px;top:290px;font-size:38px;line-height:1.2">Cada notificação<br>rouba cerca de</div>
+<div class="a R" style="left:550px;top:420px;line-height:.85"><div style="font-size:250px">7</div><div style="font-size:112px;margin-top:6px">segundos</div></div>
+<div class="a C" style="left:560px;top:770px;font-size:92px;color:#9B506E;-webkit-text-stroke:1.5px #9B506E;line-height:1.05">da sua<br>atenção.</div>
+<div class="a P" style="left:560px;right:40px;top:1030px;font-size:40px;line-height:1.5"><span style="background:#D6E5DA;padding:2px 14px 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone">E você nem abriu<br>a mensagem.</span></div>
+<div class="a P" style="left:560px;top:1190px;font-size:28px;background:#5a2538;color:#FCC8BF;border-radius:30px;padding:6px 26px 10px">arrasta pro lado →</div>''')
+open(S+'n2/s01.html','w').write(P1)
