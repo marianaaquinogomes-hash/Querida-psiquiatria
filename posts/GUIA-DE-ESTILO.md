@@ -21,7 +21,7 @@
 ## Legendas: estilo aprovado
 Modelo de referência: `posts/carrosseis/2026-11-dormir-mal/legenda.md`.
 
-- **Abertura:** uma frase entre aspas que os pais ouvem ou dizem ("Ele se distrai muito na aula.") ou uma situação concreta do dia a dia ("Se na hora de desligar o videogame costuma virar negociação...").
+- **Abertura:** **nunca começar com uma frase entre aspas.** Abrir com uma situação concreta do dia a dia, em texto corrido ("Se na hora de desligar o videogame costuma virar negociação..."). Frases entre aspas podem aparecer no meio do texto, como exemplos do que dizer.
 - **Corpo prático:** dar frases prontas que os pais podem dizer, entre aspas, e perguntas para fazer ou observar. Dizer o que fazer na prática (combinar antes, anotar, perguntar à escola).
 - **Texto corrido**, em 2 a 4 parágrafos, de 90 a 150 palavras. Evitar listas com tópicos, frases de efeito e cenas imaginadas ("imagine a cena").
 - **Tom:** direto, calmo e respeitoso. "A gente", "seu filho". Acolher a frustração da criança e manter o combinado.

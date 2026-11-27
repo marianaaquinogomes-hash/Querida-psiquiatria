@@ -1,4 +1,4 @@
-"Lá em casa a gente evita falar sobre isso, para não assustar." É um cuidado que faz sentido. Mas, muitas vezes, a criança já viu. E, quando ninguém fala, ela fica sozinha para entender o que aconteceu.
+Muitas famílias evitam falar sobre a violência perto das crianças, para não assustar. É um cuidado que faz sentido. Mas, muitas vezes, a criança já viu. E, quando ninguém fala, ela fica sozinha para entender o que aconteceu.
 
 Não é preciso começar com uma conversa longa. Pode ser algo simples, no ritmo dela: "Eu vi que você ficou assustado ontem. Quer me contar o que você viu?" Se as palavras não vierem, tudo bem. O desenho e a brincadeira também são formas de contar. [REVISAR – IACAPAP, cap. A.5]
 
