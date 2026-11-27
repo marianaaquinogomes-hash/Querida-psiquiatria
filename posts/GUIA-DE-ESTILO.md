@@ -24,6 +24,12 @@
 - Slide de fontes **oficial**: o vídeo-modelo `posts/modelos-video/fontes-template.mp4` (1080×1350, 5 s, com áudio). Recolorir o selo para o **rosa da paleta (#F4C3BE)** e o título "Fontes:" para ameixa (#9B506E). Escrever as referências abaixo de "Fontes:", centralizadas, na fonte Inter, em **vinho (#4A1C2E)**, com o título da obra em itálico. O cartão do modelo diz "Aguino"; corrigir para "Aquino".
 - Carrosséis prontos ficam em `posts/carrosseis/AAAA-MM-tema/` (slides, ZIP e `legenda.md`).
 
+## Carrossel modelo (aprovado pela Dra.)
+`posts/carrosseis/2026-11-notificacoes/` é o **carrossel de referência**: ela gostou muito dele. Usar como padrão de qualidade e variedade.
+- Cada slide com uma estrutura diferente: capa com foto retangular e pílula na borda; faixa de foto + título grande com cursiva; três quadros + caixa alta + cursiva; título cursivo com recortes ovais; foto inteira com título e linhas; tabela em duas colunas com fitas; pílulas empilhadas; foto em cima e bloco colorido embaixo; pílulas inclinadas sobre foto; balões com contorno; slide de fontes.
+- Textura de papel/tecido em todos os slides, letras com espaçamento aberto, números em Roca (nunca em cursiva, para ficarem legíveis).
+- Os HTML de cada slide e o gerador ficam em `fonte-html/` para reaproveitar as estruturas.
+
 ## Legendas: estilo aprovado
 Modelo de referência: `posts/carrosseis/2026-11-dormir-mal/legenda.md`.
 

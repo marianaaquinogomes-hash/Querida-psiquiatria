@@ -39,8 +39,8 @@ fr=''.join(f'<div class="ph" style="left:{60+i*325}px;top:330px;width:310px;heig
 P[3]=page('creme',f'''
 <div class="a c R" style="left:0;right:0;top:220px;font-size:50px;color:#B36978;-webkit-text-stroke:0;letter-spacing:.02em">A CADA NOTIFICAÇÃO, O CÉREBRO</div>{fr}
 <div class="a c R" style="left:0;right:0;top:610px;font-size:150px;line-height:.92">FICA MAIS<br>LENTO POR</div>
-<div class="a c C" style="left:0;right:0;top:850px;font-size:170px;color:#B36978;-webkit-text-stroke:2px #B36978">~7 segundos.</div>
-<div class="a c P" style="left:120px;right:120px;top:1080px;font-size:36px">E isso sem nem abrir a mensagem:<br><b>bastou ver o ícone do app aparecer.</b></div>''')
+<div class="a c" style="left:0;right:0;top:885px;color:#B36978;white-space:nowrap"><span class="R" style="font-size:150px;-webkit-text-stroke:2px #B36978;vertical-align:baseline">~7</span> <span class="C" style="font-size:150px;-webkit-text-stroke:2px #B36978">segundos.</span></div>
+<div class="a c P" style="left:120px;right:120px;top:1100px;font-size:36px">E isso sem nem abrir a mensagem:<br><b>bastou ver o ícone do app aparecer.</b></div>''')
 # 4 — título cursivo + recortes ovais + texto sublinhado (ref. Camila 2)
 ov=lambda i,css,pos: f'<div class="ph" style="{css};border-radius:48% 52% 45% 55%/55% 45% 55% 45%;z-index:5"><img src="{m(i)}" style="object-position:{pos}"></div>'
 P[4]=page('vinho',f'''
